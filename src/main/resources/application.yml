@@ -1,0 +1,26 @@
+server:
+  port: 8080
+spring:
+  profiles:
+    active: dev
+---
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:h2:mem:imin
+    initialization-mode: never
+  jpa:
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+  h2:
+    console:
+      enabled: true
+  liquibase:
+    change-log: /db/changelog/db.changelog-master.xml
+server:
+  port: 8080
+---
+spring:
+  profiles: prod
