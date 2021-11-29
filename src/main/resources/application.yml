@@ -7,7 +7,7 @@ spring:
 spring:
   profiles: dev
   datasource:
-    url: jdbc:h2:mem:imin
+    url: jdbc:h2:mem:im-in
     initialization-mode: never
   jpa:
     generate-ddl: false

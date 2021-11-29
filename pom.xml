@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ru.tikskit</groupId>
-	<artifactId>imin</artifactId>
+	<artifactId>im-in</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>I&apos;m in</name>
 	<description>Project that helps people to watch the activities they like to do</description>
