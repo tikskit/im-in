@@ -15,7 +15,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -34,9 +33,9 @@ public class Event {
     @Column(name = "id")
     private long id;
 
-    @ManyToOne(targetEntity = EventOrganizer.class)
+    @ManyToOne(targetEntity = Organizer.class)
     @EqualsAndHashCode.Include
-    private EventOrganizer organizer;
+    private Organizer organizer;
 
     @Column(name = "description", nullable = false)
     @EqualsAndHashCode.Include

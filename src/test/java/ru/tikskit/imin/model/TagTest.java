@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
@@ -21,7 +20,7 @@ public class TagTest {
     @Test
     @DisplayName("Должен создавать 3 тэга для события")
     public void shouldAddTag4Event() {
-        EventOrganizer organizer = em.persist(new EventOrganizer());
+        Organizer organizer = em.persist(new Organizer());
         OffsetDateTime dateTime = Calendar.getInstance().toInstant().atOffset(ZoneOffset.of("+07:00"));
 
         Event event = new Event(0, organizer, "My first event", dateTime, EventStatus.ARRANGED,

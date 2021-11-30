@@ -15,14 +15,14 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 
 @DataJpaTest
-public class EventOrganizerTest {
+public class OrganizerTest {
     @Autowired
     TestEntityManager em;
 
     @Test
     @DisplayName("Должно сохраняться нормально, если EventPlaceType.ADDRESS и все необходимые поля заданы")
     public void shouldSaveWhenAddressSetForPlaceTypeADDRESS() {
-        EventOrganizer organizer = em.persist(new EventOrganizer());
+        Organizer organizer = em.persist(new Organizer());
         OffsetDateTime dateTime = Calendar.getInstance().toInstant().atOffset(ZoneOffset.of("+07:00"));
 
         Event event = new Event(0, organizer, "My first event", dateTime, EventStatus.ARRANGED,
@@ -36,7 +36,7 @@ public class EventOrganizerTest {
     @Test
     @DisplayName("Если тип места проведения EventPlaceType.ADDRESS и некоторые из обязательных полей не заданы, то вываливается ошибка")
     public void shouldThrowWhenAddressNotSetForPlaceTypeADDRESS() {
-        EventOrganizer organizer = em.persist(new EventOrganizer());
+        Organizer organizer = em.persist(new Organizer());
         OffsetDateTime dateTime = Calendar.getInstance().toInstant().atOffset(ZoneOffset.of("+07:00"));
 
         Event event = new Event(0, organizer, "My first event", dateTime, EventStatus.ARRANGED,
@@ -52,7 +52,7 @@ public class EventOrganizerTest {
     @Test
     @DisplayName("Должно сохраняться нормально, если EventPlaceType.URI и все необходимые поля заданы")
     public void shouldSaveWhenUriSetForPlaceTypeURI() {
-        EventOrganizer organizer = em.persist(new EventOrganizer());
+        Organizer organizer = em.persist(new Organizer());
         OffsetDateTime dateTime = Calendar.getInstance().toInstant().atOffset(ZoneOffset.of("+07:00"));
 
         Event event = new Event(0, organizer, "My first event", dateTime, EventStatus.ARRANGED,
@@ -65,7 +65,7 @@ public class EventOrganizerTest {
     @Test
     @DisplayName("Если тип места проведения EventPlaceType.URI и некоторые из обязательных полей не заданы, то вываливается ошибка")
     public void shouldThrowWhenUriNotSetForPlaceTypeURI() {
-        EventOrganizer organizer = em.persist(new EventOrganizer());
+        Organizer organizer = em.persist(new Organizer());
         OffsetDateTime dateTime = Calendar.getInstance().toInstant().atOffset(ZoneOffset.of("+07:00"));
 
         Event event = new Event(0, organizer, "My first event", dateTime, EventStatus.ARRANGED,
@@ -81,7 +81,7 @@ public class EventOrganizerTest {
     @Test
     @DisplayName("Должно сохраняться нормально, если EventPlaceType.GEO и все необходимые поля заданы")
     public void shouldSaveWhenGeoSetForPlaceTypeGEO() {
-        EventOrganizer organizer = em.persist(new EventOrganizer());
+        Organizer organizer = em.persist(new Organizer());
         OffsetDateTime dateTime = Calendar.getInstance().toInstant().atOffset(ZoneOffset.of("+07:00"));
 
         Event event = new Event(0, organizer, "My first event", dateTime, EventStatus.ARRANGED,
@@ -94,7 +94,7 @@ public class EventOrganizerTest {
     @Test
     @DisplayName("Если тип места проведения EventPlaceType.URI и некоторые из обязательных полей не заданы, то вываливается ошибка")
     public void shouldThrowWhenGeoNotSetForPlaceTypeGEO() {
-        EventOrganizer organizer = em.persist(new EventOrganizer());
+        Organizer organizer = em.persist(new Organizer());
         OffsetDateTime dateTime = Calendar.getInstance().toInstant().atOffset(ZoneOffset.of("+07:00"));
 
         Event event = new Event(0, organizer, "My first event", dateTime, EventStatus.ARRANGED,
@@ -110,7 +110,7 @@ public class EventOrganizerTest {
     @Test
     @DisplayName("Должна вываливаться ошибка, если не задан статус")
     public void shouldThrowWhenStatusNotSet() {
-        EventOrganizer organizer = em.persist(new EventOrganizer());
+        Organizer organizer = em.persist(new Organizer());
         OffsetDateTime dateTime = Calendar.getInstance().toInstant().atOffset(ZoneOffset.of("+07:00"));
         Event event = new Event(0, organizer, "My first event", dateTime, null,
                 new EventPlace("https://youtube.com"), null);
@@ -126,7 +126,7 @@ public class EventOrganizerTest {
     @Test
     @DisplayName("Если удаляем из БД событие, то организатор не удаляется")
     public void shouldRemainOrganizerWhenEventGetsDeleted() {
-        EventOrganizer organizer = em.persist(new EventOrganizer());
+        Organizer organizer = em.persist(new Organizer());
         OffsetDateTime dateTime = Calendar.getInstance().toInstant().atOffset(ZoneOffset.of("+07:00"));
         Event event = em.persist(new Event(0, organizer, "My first event", dateTime, EventStatus.ARRANGED,
                 new EventPlace(new GeoPoint(10f, 20f)), null));
@@ -135,7 +135,7 @@ public class EventOrganizerTest {
         em.remove(event);
         em.flush();
         em.clear();
-        EventOrganizer eventOrganizer = em.find(EventOrganizer.class, orgId);
+        Organizer eventOrganizer = em.find(Organizer.class, orgId);
         assertThat(eventOrganizer).isNotNull();
 
     }
@@ -143,7 +143,7 @@ public class EventOrganizerTest {
     @Test
     @DisplayName("Если из БД удаляется организатор, то удаляются и все его события")
     public void shouldDeleteEventWhenOrganizerGetsDeleted() {
-        EventOrganizer organizer = em.persist(new EventOrganizer());
+        Organizer organizer = em.persist(new Organizer());
         OffsetDateTime dateTime = Calendar.getInstance().toInstant().atOffset(ZoneOffset.of("+07:00"));
         Event event = em.persist(new Event(0, organizer, "My first event", dateTime, EventStatus.ARRANGED,
                 new EventPlace(new GeoPoint(10f, 20f)), null));
@@ -159,8 +159,8 @@ public class EventOrganizerTest {
     @Test
     @DisplayName("Если из БД удаляется организатор, то из БД удаляются только его события, а не его остаются")
     public void shouldDeleteEventOfOrganizerWhenItGetsDeleted() {
-        EventOrganizer organizer1 = em.persist(new EventOrganizer());
-        EventOrganizer organizer2 = em.persist(new EventOrganizer());
+        Organizer organizer1 = em.persist(new Organizer());
+        Organizer organizer2 = em.persist(new Organizer());
 
         OffsetDateTime dateTime = Calendar.getInstance().toInstant().atOffset(ZoneOffset.of("+07:00"));
         Event event1 = em.persist(new Event(0, organizer1, "My first event", dateTime, EventStatus.ARRANGED,
