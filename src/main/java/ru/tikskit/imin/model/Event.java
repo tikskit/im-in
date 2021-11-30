@@ -2,6 +2,7 @@ package ru.tikskit.imin.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.CascadeType;
@@ -20,6 +21,7 @@ import java.time.OffsetDateTime;
 @Data
 @Entity
 @Table(name = "events")
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,17 +29,22 @@ public class Event {
     private long id;
 
     @ManyToOne(targetEntity = EventOrganizer.class)
+    @EqualsAndHashCode.Include
     private EventOrganizer organizer;
 
     @Column(name = "description", nullable = false)
+    @EqualsAndHashCode.Include
     private String description;
 
     @Column(name = "datetime", nullable = false)
+    @EqualsAndHashCode.Include
     private OffsetDateTime dateTime;
 
     @Column(name = "status", nullable = false)
+    @EqualsAndHashCode.Include
     private EventStatus status;
 
     @Embedded
+    @EqualsAndHashCode.Include
     private EventPlace eventPlace;
 }
