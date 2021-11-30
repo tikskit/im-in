@@ -7,8 +7,10 @@ spring:
 spring:
   profiles: dev
   datasource:
-    url: jdbc:h2:mem:im-in
     initialization-mode: never
+    url: jdbc:postgresql://localhost:5432/mydb
+    username: dbuser
+    password: pass
   jpa:
     generate-ddl: false
     hibernate:
@@ -19,8 +21,6 @@ spring:
       enabled: true
   liquibase:
     change-log: /db/changelog/db.changelog-master.xml
-server:
-  port: 8080
 ---
 spring:
   profiles: prod

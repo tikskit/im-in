@@ -6,18 +6,18 @@ services:
       dockerfile: Dockerfile
     privileged: true
     ports:
-      - "8080:8080"
+      - "80:8080"
     # Эти свойства перегружают соответствующие в application.yml
 #    environment:
 #      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=org.postgresql.Driver
-#      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/db
+#      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/db -- Тут postgres это имя сервиса (ниже)
 #      - SPRING_DATASOURCE_USERNAME=postgres
 #      - SPRING_DATASOURCE_PASSWORD=postgres
     networks:
       - nw
   postgres:
     # В идеале должна быть ещё и версия image
-    image: "postgres"
+    image: "postgres:14"
     ports:
       - "5432:5432"
 #    environment:
