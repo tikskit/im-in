@@ -2,7 +2,7 @@ package ru.tikskit.imin.model;
 
 public enum EventPlaceType {
     ADDRESS(0),
-    GEOLOCATION(1),
+    GEO(1),
     URI(2);
 
     private final int code;

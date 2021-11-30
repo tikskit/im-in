@@ -14,19 +14,19 @@ import javax.persistence.Embeddable;
 @NoArgsConstructor
 @Data
 public class Address {
-    @Column(name = "country", nullable = false)
+    @Column(name = "country")
     private String country;
 
-    @Column(name = "region", nullable = false)
+    @Column(name = "region")
     private String reqion;
 
-    @Column(name = "city", nullable = false)
+    @Column(name = "city")
     private String city;
 
-    @Column(name = "street", nullable = false)
+    @Column(name = "street")
     private String street;
 
-    @Column(name = "building", nullable = false)
+    @Column(name = "building")
     private String building;
 
     @Column(name = "flat")

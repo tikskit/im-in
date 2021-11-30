@@ -31,4 +31,16 @@ public class EventPlace {
 
     @Embedded
     private GeoPoint geo;
+
+    public EventPlace(Address address) {
+        this(EventPlaceType.ADDRESS, address, null, null);
+    }
+
+    public EventPlace(String uri) {
+        this(EventPlaceType.URI, null, uri, null);
+    }
+
+    public EventPlace(GeoPoint geo) {
+        this(EventPlaceType.GEO, null, null, geo);
+    }
 }

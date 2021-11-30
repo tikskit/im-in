@@ -59,7 +59,7 @@
     </changeSet>
 
     <changeSet id="0004" author="tikskit">
-        <sql dbms="postgresql, mssql">
+        <sql dbms="postgresql, mssql, h2">
             ALTER TABLE events
             ADD CONSTRAINT ck_placetype
             CHECK(
@@ -70,7 +70,7 @@
         </sql>
     </changeSet>
     <changeSet id="0005" author="tikskit">
-        <sql dbms="postgresql, mssql">
+        <sql dbms="postgresql, mssql, h2">
             ALTER TABLE events
             ADD CONSTRAINT ck_status
             CHECK(
