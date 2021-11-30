@@ -1,11 +1,6 @@
 server:
   port: 8080
 spring:
-  datasource:
-    initialization-mode: never
-    url: jdbc:postgresql://localhost:5432/mydb
-    username: dbuser
-    password: pass
   jpa:
     generate-ddl: false
     hibernate:
@@ -13,7 +8,7 @@ spring:
     show-sql: true
   h2:
     console:
-      enabled: true
+      enabled: false
   liquibase:
     enabled: true
     change-log: /db/changelog/db.changelog-master.xml

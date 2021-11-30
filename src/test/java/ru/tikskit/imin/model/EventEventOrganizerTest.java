@@ -14,6 +14,7 @@ public class EventEventOrganizerTest {
     @Test
     @DisplayName("Когда удаляется событие, не должен удаляться организатор")
     public void xxx() {
-
+        EventOrganizer persist = em.persist(new EventOrganizer());
+        em.flush();
     }
 }
