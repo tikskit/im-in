@@ -19,7 +19,7 @@ public class EventOrganizerTest {
     TestEntityManager em;
 
     @Test
-    @DisplayName("Должно сохраняться нормальное, если EventPlaceType.ADDRESS и все необходимые поля заданы")
+    @DisplayName("Должно сохраняться нормально, если EventPlaceType.ADDRESS и все необходимые поля заданы")
     public void shouldSaveWhenAddressSetForPlaceTypeADDRESS() {
         EventOrganizer persist = em.persist(new EventOrganizer());
         OffsetDateTime dateTime = Calendar.getInstance().toInstant().atOffset(ZoneOffset.of("+07:00"));
@@ -51,7 +51,7 @@ public class EventOrganizerTest {
     }
 
     @Test
-    @DisplayName("Должно сохраняться нормальное, если EventPlaceType.URI и все необходимые поля заданы")
+    @DisplayName("Должно сохраняться нормально, если EventPlaceType.URI и все необходимые поля заданы")
     public void shouldSaveWhenUriSetForPlaceTypeURI() {
         EventOrganizer persist = em.persist(new EventOrganizer());
         OffsetDateTime dateTime = Calendar.getInstance().toInstant().atOffset(ZoneOffset.of("+07:00"));
@@ -82,7 +82,7 @@ public class EventOrganizerTest {
     }
 
     @Test
-    @DisplayName("Должно сохраняться нормальное, если EventPlaceType.GEO и все необходимые поля заданы")
+    @DisplayName("Должно сохраняться нормально, если EventPlaceType.GEO и все необходимые поля заданы")
     public void shouldSaveWhenGeoSetForPlaceTypeGEO() {
         EventOrganizer persist = em.persist(new EventOrganizer());
         OffsetDateTime dateTime = Calendar.getInstance().toInstant().atOffset(ZoneOffset.of("+07:00"));
