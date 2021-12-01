@@ -19,16 +19,11 @@ geocoding:
 #    Зашифрованный ключ для доступа к сервису
     apikey: ENC(Cg6tHOarEzxBziaitX1uuabtuIZjTYKErR+nSxUxkj2Exbc4x4c/3YKL8C/G/oee7NknHCnlOm0dnOlp3HVLmQ==)
 properties:
-#  Значение ключа для декодирования зашифрованных настроек. Передается через окружение среды
+#  Значение ключа для декодирования зашифрованных настроек. Настоящее значение передается через переменную окружения среды
   password: passstub
 jasypt:
   encryptor:
     bean: appPropertiesEncryptor
-
-logging:
-  level:
-    ru.tikskit.imin.services.geocode.here: debug
-    ru.tikskit.imin.services.geocode: debug
 
 management:
   endpoints:
