@@ -1,18 +1,23 @@
-package ru.tikskit.imin.services.geocode.here;
+package ru.tikskit.imin.services.geocode;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import ru.tikskit.imin.services.geocode.here.dto.Position;
+import lombok.ToString;
 
 @AllArgsConstructor
 @Getter
+@ToString
 public class RequestResult {
     private final ResultStatus status;
-    private final Position position;
+    private final LatLng latLng;
     private final Exception exception;
 
-    public static RequestResult success(Position position) {
-        return new RequestResult(ResultStatus.RECEIVED, position, null);
+    public static RequestResult success(LatLng latLng) {
+        return new RequestResult(ResultStatus.RECEIVED, latLng, null);
+    }
+
+    public static RequestResult empty() {
+        return new RequestResult(ResultStatus.EMPTY, null, null);
     }
 
     public static RequestResult limitExceeded() {

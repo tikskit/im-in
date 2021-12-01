@@ -1,29 +1,39 @@
 package ru.tikskit.imin.services.geocode;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import ru.tikskit.imin.services.dto.AddressDto;
-import ru.tikskit.imin.services.dto.GeoPointDto;
+
+import java.util.Optional;
 
 @Service
-public class AddressResolveServiceImpl implements AddressResolveService {
+public class AddressResolverServiceImpl implements AddressResolverService {
 
-    private final Geocoder cache;
-    private final Geocoder here;
+    private static final Logger logger = LoggerFactory.getLogger(AddressResolverServiceImpl.class);
 
-    public AddressResolveServiceImpl(@Qualifier("geocoderCache") Geocoder cache,
-                                     @Qualifier("geocoderHere") Geocoder here) {
-        this.cache = cache;
-        this.here = here;
+    private final Geocoder geocoder;
+
+    public AddressResolverServiceImpl(@Qualifier("geocoderHere") Geocoder geocoder) {
+        this.geocoder = geocoder;
     }
 
     @Override
-    public GeoPointDto resolve(AddressDto address) {
-        GeoPointDto result = cache.request(address);
-        if (result != null) {
-            return result;
+    public Optional<LatLng> resolve(AddressDto address) {
+        RequestResult res = geocoder.request(address);
+        logger.debug("Result from geo coder: {}", res);
+        // todo тут надо придумать, как обрабатывать результаты
+        if (res.getStatus() == ResultStatus.RECEIVED) {
+            return Optional.of(res.getLatLng());
+        } else if (res.getStatus() == ResultStatus.EMPTY) {
+            return Optional.empty();
+        } else if (res.getStatus() == ResultStatus.LIMIT_EXCEEDED) {
+            return Optional.empty();
+        } else if (res.getStatus() == ResultStatus.EXCEPTION) {
+            return Optional.empty();
+        } else {
+            return Optional.empty();
         }
-
-        return here.request(address);
     }
 }

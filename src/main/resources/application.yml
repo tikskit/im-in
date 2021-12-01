@@ -24,3 +24,22 @@ properties:
 jasypt:
   encryptor:
     bean: appPropertiesEncryptor
+
+logging:
+  level:
+    ru.tikskit.imin.services.geocode.here: debug
+    ru.tikskit.imin.services.geocode: debug
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: metrics,health,logfile
+  endpoint:
+    health:
+      show-details: always
+    metrics:
+      enabled: true
+  health:
+    defaults:
+      enabled: true

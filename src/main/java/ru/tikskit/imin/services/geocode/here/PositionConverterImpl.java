@@ -1,7 +1,8 @@
-package ru.tikskit.imin.services.geocode.here.dto;
+package ru.tikskit.imin.services.geocode.here;
 
 import org.springframework.stereotype.Component;
 import ru.tikskit.imin.services.geocode.LatLng;
+import ru.tikskit.imin.services.geocode.here.dto.Position;
 
 @Component
 public class PositionConverterImpl implements PositionConverter {

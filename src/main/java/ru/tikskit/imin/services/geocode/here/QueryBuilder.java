@@ -1,4 +1,6 @@
 package ru.tikskit.imin.services.geocode.here;
 
-public class QueryBuilder {
+interface QueryBuilder {
+    QueryBuilder addPart(String part);
+    String build();
 }

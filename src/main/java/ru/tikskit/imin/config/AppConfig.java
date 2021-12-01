@@ -1,14 +1,20 @@
 package ru.tikskit.imin.config;
 
-import org.jasypt.iv.RandomIvGenerator;
-import org.springframework.beans.factory.annotation.Value;
 import org.jasypt.encryption.StringEncryptor;
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
+import org.jasypt.iv.RandomIvGenerator;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class JasyptConfig {
+public class AppConfig {
+
+    public CacheManager cacheManager() {
+        return new ConcurrentMapCacheManager("hereGeodata");
+    }
 
     /**
      * Шифровальщик/дешифровальщик для зашифрованных настроек в application.yml
@@ -22,4 +28,5 @@ public class JasyptConfig {
         encryptor.setIvGenerator(new RandomIvGenerator());
         return encryptor;
     }
+
 }
