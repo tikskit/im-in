@@ -12,6 +12,8 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/mydb
       - SPRING_DATASOURCE_USERNAME=dbuser
       - SPRING_DATASOURCE_PASSWORD=pass
+# Пароль для дешифровки зашифрованных настроек в application.yml
+      - PROPERTIES_PASSWORD=type_correct_pass
     networks:
       - nw
   postgres:

@@ -14,3 +14,13 @@ spring:
   liquibase:
     enabled: true
     change-log: /db/changelog/db.changelog-master.xml
+geocoding:
+  here:
+#    Зашифрованный ключ для доступа к сервису
+    apikey: ENC(Cg6tHOarEzxBziaitX1uuabtuIZjTYKErR+nSxUxkj2Exbc4x4c/3YKL8C/G/oee7NknHCnlOm0dnOlp3HVLmQ==)
+properties:
+#  Значение ключа для декодирования зашифрованных настроек. Передается через окружение среды
+  password: passstub
+jasypt:
+  encryptor:
+    bean: appPropertiesEncryptor

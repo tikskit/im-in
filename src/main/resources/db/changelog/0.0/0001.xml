@@ -41,8 +41,8 @@
             <column name="flat" type="VARCHAR(10)"/>
             <column name="extra" type="VARCHAR(255)"/>
 
-            <column name="lat" type="float"/>
-            <column name="lon" type="float"/>
+            <column name="lat" type="double precision"/>
+            <column name="lon" type="double precision"/>
 
             <column name="uri" type="VARCHAR"/>
 
