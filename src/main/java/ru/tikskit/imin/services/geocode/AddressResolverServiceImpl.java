@@ -19,11 +19,11 @@ public class AddressResolveServiceImpl implements AddressResolveService {
 
     @Override
     public GeoPointDto resolve(AddressDto address) {
-        GeoPointDto result = cache.resolve(address);
+        GeoPointDto result = cache.request(address);
         if (result != null) {
             return result;
         }
 
-        return here.resolve(address);
+        return here.request(address);
     }
 }
