@@ -13,6 +13,10 @@ import java.util.Objects;
 @Component
 public class AddressToUriConverterHere implements AddressToUriConverter {
 
+    public static final String LIMIT_PARAM_NAME = "limit";
+    public static final String QUERY_PARAM_NAME = "q";
+    public static final String API_KEY_PARAM_NAME = "apiKey";
+
     private final String apiKey;
 
     public AddressToUriConverterHere(@Value("${geocoding.here.apikey}") String apiKey) {
@@ -36,9 +40,9 @@ public class AddressToUriConverterHere implements AddressToUriConverter {
         return UriComponentsBuilder
                 .fromHttpUrl("https://geocode.search.hereapi.com/")
                 .path("v1/geocode")
-                .queryParam("q", addressStr)
-                .queryParam("apiKey", apiKey)
-                .queryParam("limit", 1)
+                .queryParam(QUERY_PARAM_NAME, addressStr)
+                .queryParam(API_KEY_PARAM_NAME, apiKey)
+                .queryParam(LIMIT_PARAM_NAME, 1)
                 .encode(StandardCharsets.UTF_8)
                 .build()
                 .toUri();
