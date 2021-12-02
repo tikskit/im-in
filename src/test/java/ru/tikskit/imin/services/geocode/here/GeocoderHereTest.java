@@ -15,8 +15,11 @@ import org.springframework.cache.concurrent.ConcurrentMapCache;
 import org.springframework.cache.support.SimpleCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.TestPropertySource;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import ru.tikskit.imin.services.dto.AddressDto;
@@ -110,6 +113,7 @@ class GeocoderHereTest {
 
         verify(restTemplate, times(1)).getForEntity(uri, Result.class);
     }
+
     @Test
     @DisplayName("использовать кеширование")
     public void shouldUseCache() {
@@ -142,6 +146,118 @@ class GeocoderHereTest {
         geocoder.request(existingAddress);
 
         verify(restTemplate, times(1)).getForEntity(uri, Result.class);
+    }
+
+    @Test
+    @DisplayName("нормально обрабатывать ситуацию, когда возвращается пустой набор данных")
+    public void shouldHandleNoItems() {
+        final double lat = 10.2232d;
+        final double lng = 23.43434d;
+        URI uri = UriComponentsBuilder
+                .fromHttpUrl("https://geocode.search.hereapi.com/")
+                .build()
+                .toUri();
+        when(addressToUriConverter.convert(any())).thenReturn(uri);
+        when(positionConverter.convert(new Position(lat, lng))).thenReturn(new LatLng(lat, lng));
+
+        Result res = new Result();
+        when(builder.build()).thenReturn(restTemplate);
+
+
+        ResponseEntity<Result> re = (ResponseEntity<Result>) mock(ResponseEntity.class);
+        when(re.getBody()).thenReturn(res);
+
+        when(restTemplate.getForEntity(uri, Result.class)).thenReturn(re);
+
+        AddressDto existingAddress = createExistingAddress();
+        RequestResult result = geocoder.request(existingAddress);
+
+        assertThat(result.getStatus()).isEqualTo(ResultStatus.EMPTY);
+    }
+
+    @Test
+    @DisplayName("нормально обрабатывать ситуацию, когда запрос выполнился с ошибкой HttpClientErrorException")
+    public void shouldHandleHttpClientErrorException() {
+        final double lat = 10.2232d;
+        final double lng = 23.43434d;
+        URI uri = UriComponentsBuilder
+                .fromHttpUrl("https://geocode.search.hereapi.com/")
+                .build()
+                .toUri();
+        when(addressToUriConverter.convert(any())).thenReturn(uri);
+        when(positionConverter.convert(new Position(lat, lng))).thenReturn(new LatLng(lat, lng));
+
+        Result res = new Result();
+        when(builder.build()).thenReturn(restTemplate);
+
+
+        ResponseEntity<Result> re = (ResponseEntity<Result>) mock(ResponseEntity.class);
+        when(re.getBody()).thenReturn(res);
+
+        when(restTemplate.getForEntity(uri, Result.class)).thenThrow(HttpClientErrorException.create(
+                HttpStatus.BAD_REQUEST, "status", null, null, null));
+
+        AddressDto existingAddress = createExistingAddress();
+        RequestResult result = geocoder.request(existingAddress);
+
+        assertThat(result.getStatus()).isEqualTo(ResultStatus.EXCEPTION);
+        assertThat(result.getException()).isNotNull().isInstanceOf(HttpClientErrorException.BadRequest.class);
+    }
+    @Test
+    @DisplayName("нормально обрабатывать ситуацию, когда запрос выполнился с ошибкой RuntimeException")
+    public void shouldHandleRuntimeException() {
+        final double lat = 10.2232d;
+        final double lng = 23.43434d;
+        URI uri = UriComponentsBuilder
+                .fromHttpUrl("https://geocode.search.hereapi.com/")
+                .build()
+                .toUri();
+        when(addressToUriConverter.convert(any())).thenReturn(uri);
+        when(positionConverter.convert(new Position(lat, lng))).thenReturn(new LatLng(lat, lng));
+
+        Result res = new Result();
+        when(builder.build()).thenReturn(restTemplate);
+
+
+        ResponseEntity<Result> re = (ResponseEntity<Result>) mock(ResponseEntity.class);
+        when(re.getBody()).thenReturn(res);
+
+        when(restTemplate.getForEntity(uri, Result.class)).thenThrow(RestClientException.class);
+
+        AddressDto existingAddress = createExistingAddress();
+        RequestResult result = geocoder.request(existingAddress);
+
+        assertThat(result.getStatus()).isEqualTo(ResultStatus.EXCEPTION);
+        assertThat(result.getException()).isNotNull().isInstanceOf(RestClientException.class);
+    }
+
+    @Test
+    @DisplayName("нормально обрабатывать ситуацию, когда сервер сообщил, что превышен лимит для ключа")
+    public void shouldHandleLimitExceeded() {
+        final double lat = 10.2232d;
+        final double lng = 23.43434d;
+        URI uri = UriComponentsBuilder
+                .fromHttpUrl("https://geocode.search.hereapi.com/")
+                .build()
+                .toUri();
+        when(addressToUriConverter.convert(any())).thenReturn(uri);
+        when(positionConverter.convert(new Position(lat, lng))).thenReturn(new LatLng(lat, lng));
+
+        Result res = new Result();
+        when(builder.build()).thenReturn(restTemplate);
+
+
+        ResponseEntity<Result> re = (ResponseEntity<Result>) mock(ResponseEntity.class);
+        when(re.getBody()).thenReturn(res);
+
+        when(restTemplate.getForEntity(uri, Result.class)).thenThrow(HttpClientErrorException.create(
+                HttpStatus.TOO_MANY_REQUESTS, "status", null, null, null));
+
+        AddressDto existingAddress = createExistingAddress();
+        RequestResult result = geocoder.request(existingAddress);
+
+        assertThat(result.getStatus()).isEqualTo(ResultStatus.LIMIT_EXCEEDED);
+        assertThat(result.getException()).isNull();
     }
 
     private AddressDto createExistingAddress() {
