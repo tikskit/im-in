@@ -12,7 +12,7 @@ public class RequestResult {
     private final LatLng latLng;
     private final Exception exception;
 
-    public static RequestResult success(LatLng latLng) {
+    public static RequestResult received(LatLng latLng) {
         return new RequestResult(ResultStatus.RECEIVED, latLng, null);
     }
 
