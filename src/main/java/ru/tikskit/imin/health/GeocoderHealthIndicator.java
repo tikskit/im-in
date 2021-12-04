@@ -9,8 +9,6 @@ import ru.tikskit.imin.services.geocode.Geocoder;
 import ru.tikskit.imin.services.geocode.RequestResult;
 import ru.tikskit.imin.services.geocode.ResultStatus;
 
-import java.util.Optional;
-
 @Component
 @AllArgsConstructor
 public class GeocoderHealthIndicator implements HealthIndicator {

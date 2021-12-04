@@ -26,7 +26,7 @@
             <column name="description" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="datetime" type="TIMESTAMP">
+            <column name="datetime" type="TIMESTAMP WITH TIME ZONE">
                 <constraints nullable="false"/>
             </column>
             <column name="status" type="INTEGER">
@@ -98,9 +98,13 @@
     </changeSet>
 
     <changeSet id="0008" author="tikskit">
-        <createIndex tableName="events_tags" indexName="ix_events_tags_event_id_tag_id" unique="true">
-            <column name="event_id"/>
-            <column name="tag_id"/>
+        <createIndex tableName="events_tags" indexName="ix_event_id_tag_id" unique="true">
+            <column name="event_id">
+                <constraints nullable="false" notNullConstraintName="c_event_id_not_null"/>
+            </column>
+            <column name="tag_id">
+                <constraints nullable="false" notNullConstraintName="c_tag_id_not_null"/>
+            </column>
         </createIndex>
     </changeSet>
 
@@ -114,6 +118,56 @@
         <addForeignKeyConstraint baseTableName="events_tags" baseColumnNames="tag_id" constraintName="fk_events_tags_tag_id"
                                  referencedTableName="tags" referencedColumnNames="id" onDelete="CASCADE"
                                  onUpdate="CASCADE"/>
+    </changeSet>
+
+    <changeSet id="0011" author="tikskit">
+        <createTable tableName="users">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="users_pk"/>
+            </column>
+            <column name="username" type="VARCHAR(255)">
+                <constraints nullable="false" notNullConstraintName="c_username_not_null"/>
+            </column>
+            <column name="password" type="VARCHAR(255)">
+                <constraints nullable="false" notNullConstraintName="c_password_not_null"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="0012" author="tikskit">
+        <createIndex tableName="users" indexName="ix_username" unique="true">
+            <column name="username"/>
+        </createIndex>
+    </changeSet>
+
+    <changeSet id="0013" author="tikskit">
+        <createTable tableName="roles">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="roles_pk"/>
+            </column>
+            <column name="role" type="VARCHAR(255)">
+                <constraints nullable="false" notNullConstraintName="c_role_not_null"
+                             unique="true" uniqueConstraintName="c_role_unique"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="0014" author="tikskit">
+        <createTable tableName="users_roles">
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false" notNullConstraintName="c_user_id_not_null"/>
+            </column>
+            <column name="role_id" type="BIGINT">
+                <constraints nullable="false" notNullConstraintName="c_role_id_not_null"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="0015" author="tikskit">
+        <createIndex tableName="users_roles" indexName="ix_user_id_role_id" unique="true">
+            <column name="user_id"/>
+            <column name="role_id"/>
+        </createIndex>
     </changeSet>
 
 </databaseChangeLog>

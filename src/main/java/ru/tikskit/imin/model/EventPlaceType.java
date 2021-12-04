@@ -11,7 +11,7 @@ public enum EventPlaceType {
         return code;
     }
 
-    private EventPlaceType(int code) {
+    EventPlaceType(int code) {
         this.code = code;
     }
 }

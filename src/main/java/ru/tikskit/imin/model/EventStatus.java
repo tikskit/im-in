@@ -23,7 +23,7 @@ public enum EventStatus {
         return code;
     }
 
-    private EventStatus(int code) {
+    EventStatus(int code) {
         this.code = code;
     }
 }

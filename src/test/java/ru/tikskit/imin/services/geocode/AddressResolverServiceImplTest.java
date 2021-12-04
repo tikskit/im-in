@@ -3,12 +3,12 @@ package ru.tikskit.imin.services.geocode;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.web.client.HttpClientErrorException;
 import ru.tikskit.imin.services.dto.AddressDto;
 
@@ -23,9 +23,8 @@ import static org.mockito.Mockito.verify;
 @DisplayName("Резолвер адреса должен")
 class AddressResolverServiceImplTest {
 
-    @SpringBootConfiguration
+    @Configuration
     @Import({AddressResolverServiceImpl.class})
-    @TestPropertySource
     public static class Config{
     }
 
@@ -56,7 +55,7 @@ class AddressResolverServiceImplTest {
         AddressDto addressDto = new AddressDto("Russia", "Novosibirskaya olbast", "Novosibirsk",
                 "Lenina", "1");
         when(geocoder.request(addressDto)).thenReturn(RequestResult.exception(HttpClientErrorException.create(
-                HttpStatus.BAD_REQUEST, "status", null, null, null)));
+                HttpStatus.BAD_REQUEST, "status", new HttpHeaders(), null, null)));
 
         Optional<LatLng> result = resolver.resolve(addressDto);
 

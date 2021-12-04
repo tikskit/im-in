@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -14,10 +13,11 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.concurrent.ConcurrentMapCache;
 import org.springframework.cache.support.SimpleCacheManager;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
@@ -35,6 +35,7 @@ import ru.tikskit.imin.services.geocode.here.dto.Result;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
@@ -47,10 +48,9 @@ import static org.mockito.Mockito.verify;
 @DisplayName("Геокодер для HERE Technologies должен")
 class GeocoderHereTest {
 
-    @SpringBootConfiguration
+    @Configuration
     @EnableCaching
     @Import({GeocoderHere.class})
-    @TestPropertySource
     public static class Config{
         @Bean
         public CacheManager cacheManager() {
@@ -79,9 +79,10 @@ class GeocoderHereTest {
 
     @BeforeEach
     public void setUp() {
-        cacheManager.getCache("hereGeodata").clear();
+        Objects.requireNonNull(cacheManager.getCache("hereGeodata")).clear();
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     @DisplayName("возвращать корректные результаты, когда запрос успешно выполнился")
     public void shouldReturnCorrectResultsWhenSuccess() {
@@ -114,6 +115,7 @@ class GeocoderHereTest {
         verify(restTemplate, times(1)).getForEntity(uri, Result.class);
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     @DisplayName("использовать кеширование")
     public void shouldUseCache() {
@@ -148,6 +150,7 @@ class GeocoderHereTest {
         verify(restTemplate, times(1)).getForEntity(uri, Result.class);
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     @DisplayName("нормально обрабатывать ситуацию, когда возвращается пустой набор данных")
     public void shouldHandleNoItems() {
@@ -175,6 +178,7 @@ class GeocoderHereTest {
         assertThat(result.getStatus()).isEqualTo(ResultStatus.EMPTY);
     }
 
+    @SuppressWarnings({"unchecked"})
     @Test
     @DisplayName("нормально обрабатывать ситуацию, когда запрос выполнился с ошибкой HttpClientErrorException")
     public void shouldHandleHttpClientErrorException() {
@@ -195,7 +199,7 @@ class GeocoderHereTest {
         when(re.getBody()).thenReturn(res);
 
         when(restTemplate.getForEntity(uri, Result.class)).thenThrow(HttpClientErrorException.create(
-                HttpStatus.BAD_REQUEST, "status", null, null, null));
+                HttpStatus.BAD_REQUEST, "status", new HttpHeaders(), null, null));
 
         AddressDto existingAddress = createExistingAddress();
         RequestResult result = geocoder.request(existingAddress);
@@ -203,6 +207,8 @@ class GeocoderHereTest {
         assertThat(result.getStatus()).isEqualTo(ResultStatus.EXCEPTION);
         assertThat(result.getException()).isNotNull().isInstanceOf(HttpClientErrorException.BadRequest.class);
     }
+
+    @SuppressWarnings({"unchecked"})
     @Test
     @DisplayName("нормально обрабатывать ситуацию, когда запрос выполнился с ошибкой RuntimeException")
     public void shouldHandleRuntimeException() {
@@ -231,6 +237,7 @@ class GeocoderHereTest {
         assertThat(result.getException()).isNotNull().isInstanceOf(RestClientException.class);
     }
 
+    @SuppressWarnings({"unchecked"})
     @Test
     @DisplayName("нормально обрабатывать ситуацию, когда сервер сообщил, что превышен лимит для ключа")
     public void shouldHandleLimitExceeded() {
@@ -251,7 +258,7 @@ class GeocoderHereTest {
         when(re.getBody()).thenReturn(res);
 
         when(restTemplate.getForEntity(uri, Result.class)).thenThrow(HttpClientErrorException.create(
-                HttpStatus.TOO_MANY_REQUESTS, "status", null, null, null));
+                HttpStatus.TOO_MANY_REQUESTS, "status", new HttpHeaders(), null, null));
 
         AddressDto existingAddress = createExistingAddress();
         RequestResult result = geocoder.request(existingAddress);

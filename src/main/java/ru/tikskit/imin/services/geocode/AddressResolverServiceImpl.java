@@ -18,6 +18,7 @@ public class AddressResolverServiceImpl implements AddressResolverService {
 
     @Override
     public Optional<LatLng> resolve(AddressDto address) {
+        // todo добавить использование persistent cache, который будет хранить данные в БД
         RequestResult res = geocoder.request(address);
         logger.debug("Result from geo coder: {}", res);
         if (res.getStatus() == ResultStatus.RECEIVED) {

@@ -12,7 +12,17 @@ spring:
   liquibase:
     enabled: true
     change-log: /db/changelog/db.changelog-master.xml
-geocoding:
-  here:
-    #    Зашифрованный ключ для доступа к сервису
-    apikey: stub
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: metrics,health,logfile
+  endpoint:
+    health:
+      show-details: always
+    metrics:
+      enabled: true
+  health:
+    defaults:
+      enabled: true
