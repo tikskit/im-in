@@ -9,4 +9,4 @@ This web application is meetup.com’s analogue. One users state that they are g
 - Price
 - etc
 
-Others would like to spend time doing actions they enjoy, together with other people. This is what they use the application for. They set parameters in filters and the application searches events matching the parameters. If results are found the user can claim that they will take part in some of them (which lets the organizers to know how many people is going to come and how many empty slots left).
+Others would like to spend time doing actions they enjoy, together with other people. This is what they use the application for. They set parameters in filters and the application searches events matching the parameters. If results are found the user can claim that they will take part in some of them (which lets the organizers know how many people is going to come and how many empty slots left).
