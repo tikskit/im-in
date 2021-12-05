@@ -8,15 +8,31 @@
   http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
 
     <changeSet id="0001" author="tikskit">
-        <createTable tableName="organizers">
+        <sql dbms="postgresql, mssql, h2" endDelimiter=";">
+            CREATE SCHEMA events
+        </sql>
+    </changeSet>
+    <changeSet id="0002" author="tikskit">
+        <sql dbms="postgresql, mssql, h2" endDelimiter=";">
+            CREATE SCHEMA security
+        </sql>
+    </changeSet>
+    <changeSet id="0003" author="tikskit">
+        <sql dbms="postgresql, mssql, h2" endDelimiter=";">
+            CREATE SCHEMA actors
+        </sql>
+    </changeSet>
+
+    <changeSet id="0004" author="tikskit">
+        <createTable tableName="organizers" schemaName="actors">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" primaryKeyName="organizers_pk"/>
             </column>
         </createTable>
     </changeSet>
 
-    <changeSet id="0002" author="tikskit">
-        <createTable tableName="events">
+    <changeSet id="0005" author="tikskit">
+        <createTable tableName="events" schemaName="events">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" primaryKeyName="events_pk"/>
             </column>
@@ -35,6 +51,7 @@
 
             <column name="country" type="VARCHAR(255)"/>
             <column name="region" type="VARCHAR(255)"/>
+            <column name="county" type="VARCHAR(255)"/>
             <column name="city" type="VARCHAR(255)"/>
             <column name="street" type="VARCHAR(255)"/>
             <column name="building" type="VARCHAR(10)"/>
@@ -52,15 +69,16 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="0003" author="tikskit">
-        <addForeignKeyConstraint baseTableName="events" baseColumnNames="organizer_id" constraintName="fk_events_organizers"
-                                 referencedTableName="organizers"
-                                 referencedColumnNames="id" onUpdate="CASCADE" onDelete="CASCADE"/>
+    <changeSet id="0006" author="tikskit">
+        <addForeignKeyConstraint baseTableName="events" baseColumnNames="organizer_id" baseTableSchemaName="events"
+                                 referencedTableName="organizers" referencedColumnNames="id" referencedTableSchemaName="actors"
+                                 constraintName="fk_events_organizers"
+                                 onUpdate="CASCADE" onDelete="CASCADE"/>
     </changeSet>
 
-    <changeSet id="0004" author="tikskit">
+    <changeSet id="0007" author="tikskit">
         <sql dbms="postgresql, mssql, h2">
-            ALTER TABLE events
+            ALTER TABLE events.events
             ADD CONSTRAINT ck_placetype
             CHECK(
                 (placetype = 0 AND country IS NOT NULL AND region IS NOT NULL AND city IS NOT NULL AND street IS NOT NULL
@@ -69,9 +87,9 @@
             );
         </sql>
     </changeSet>
-    <changeSet id="0005" author="tikskit">
+    <changeSet id="0008" author="tikskit">
         <sql dbms="postgresql, mssql, h2">
-            ALTER TABLE events
+            ALTER TABLE events.events
             ADD CONSTRAINT ck_status
             CHECK(
                 status in (0, 1, 2)
@@ -79,8 +97,8 @@
         </sql>
     </changeSet>
 
-    <changeSet id="0006" author="tikskit">
-        <createTable tableName="tags">
+    <changeSet id="0009" author="tikskit">
+        <createTable tableName="tags" schemaName="events">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" primaryKeyName="pk_tags"/>
             </column>
@@ -90,15 +108,15 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="0007" author="tikskit">
-        <createTable tableName="events_tags">
+    <changeSet id="0010" author="tikskit">
+        <createTable tableName="events_tags" schemaName="events">
             <column name="event_id" type="BIGINT"/>
             <column name="tag_id" type="BIGINT"/>
         </createTable>
     </changeSet>
 
-    <changeSet id="0008" author="tikskit">
-        <createIndex tableName="events_tags" indexName="ix_event_id_tag_id" unique="true">
+    <changeSet id="0011" author="tikskit">
+        <createIndex tableName="events_tags" schemaName="events" indexName="ix_event_id_tag_id" unique="true">
             <column name="event_id">
                 <constraints nullable="false" notNullConstraintName="c_event_id_not_null"/>
             </column>
@@ -108,20 +126,22 @@
         </createIndex>
     </changeSet>
 
-    <changeSet id="0009" author="tikskit">
-        <addForeignKeyConstraint baseTableName="events_tags" baseColumnNames="event_id" constraintName="fk_events_tags_event_id"
-                                 referencedTableName="events" referencedColumnNames="id" onDelete="CASCADE"
-                                 onUpdate="CASCADE"/>
+    <changeSet id="0012" author="tikskit">
+        <addForeignKeyConstraint baseTableName="events_tags" baseColumnNames="event_id" baseTableSchemaName="events"
+                                 referencedTableName="events" referencedColumnNames="id" referencedTableSchemaName="events"
+                                 constraintName="fk_events_tags_event_id"
+                                 onDelete="CASCADE" onUpdate="CASCADE"/>
     </changeSet>
 
-    <changeSet id="0010" author="tikskit">
-        <addForeignKeyConstraint baseTableName="events_tags" baseColumnNames="tag_id" constraintName="fk_events_tags_tag_id"
-                                 referencedTableName="tags" referencedColumnNames="id" onDelete="CASCADE"
-                                 onUpdate="CASCADE"/>
+    <changeSet id="0013" author="tikskit">
+        <addForeignKeyConstraint baseTableName="events_tags"
+                                 baseColumnNames="tag_id" constraintName="fk_events_tags_tag_id" baseTableSchemaName="events"
+                                 referencedTableName="tags" referencedColumnNames="id" referencedTableSchemaName="events"
+                                 onDelete="CASCADE" onUpdate="CASCADE"/>
     </changeSet>
 
-    <changeSet id="0011" author="tikskit">
-        <createTable tableName="users">
+    <changeSet id="0014" author="tikskit">
+        <createTable tableName="users" schemaName="security">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" primaryKeyName="users_pk"/>
             </column>
@@ -134,14 +154,14 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="0012" author="tikskit">
-        <createIndex tableName="users" indexName="ix_username" unique="true">
+    <changeSet id="0015" author="tikskit">
+        <createIndex tableName="users" schemaName="security" indexName="ix_username" unique="true">
             <column name="username"/>
         </createIndex>
     </changeSet>
 
-    <changeSet id="0013" author="tikskit">
-        <createTable tableName="roles">
+    <changeSet id="0016" author="tikskit">
+        <createTable tableName="roles" schemaName="security">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" primaryKeyName="roles_pk"/>
             </column>
@@ -152,8 +172,8 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="0014" author="tikskit">
-        <createTable tableName="users_roles">
+    <changeSet id="0017" author="tikskit">
+        <createTable tableName="users_roles" schemaName="security">
             <column name="user_id" type="BIGINT">
                 <constraints nullable="false" notNullConstraintName="c_user_id_not_null"/>
             </column>
@@ -163,8 +183,8 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="0015" author="tikskit">
-        <createIndex tableName="users_roles" indexName="ix_user_id_role_id" unique="true">
+    <changeSet id="0018" author="tikskit">
+        <createIndex tableName="users_roles" schemaName="security" indexName="ix_user_id_role_id" unique="true">
             <column name="user_id"/>
             <column name="role_id"/>
         </createIndex>

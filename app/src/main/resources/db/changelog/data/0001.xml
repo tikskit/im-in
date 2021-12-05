@@ -8,29 +8,29 @@
   http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
 
     <changeSet id="0001" author="tikskit">
-        <insert tableName="users">
+        <insert tableName="users" schemaName="security">
             <column name="username" value="superuser"/>
             <column name="password" value="$2a$10$Dv/SokAH8ESdw0Eeci1qvu16mq1z2d1qnHhon.JFAgeSTJKG3jJvK"/>
         </insert>
 
-        <insert tableName="roles">
+        <insert tableName="roles" schemaName="security">
             <column name="role" value="MAINTAINER"/>
         </insert>
-        <insert tableName="roles">
+        <insert tableName="roles" schemaName="security">
             <column name="role" value="ADMIN"/>
         </insert>
-        <insert tableName="roles">
+        <insert tableName="roles" schemaName="security">
             <column name="role" value="ORGANIZER"/>
         </insert>
-        <insert tableName="roles">
+        <insert tableName="roles" schemaName="security">
             <column name="role" value="PARTICIPANT"/>
         </insert>
 <!--        Даем superuser роли maintainer и admin-->
-        <insert tableName="users_roles">
+        <insert tableName="users_roles" schemaName="security">
             <column name="user_id" value="1"/>
             <column name="role_id" value="1"/>
         </insert>
-        <insert tableName="users_roles">
+        <insert tableName="users_roles" schemaName="security">
             <column name="user_id" value="1"/>
             <column name="role_id" value="2"/>
         </insert>

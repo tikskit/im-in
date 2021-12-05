@@ -25,7 +25,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "events")
+@Table(name = "events", schema = "events")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Event {
     @Id
@@ -54,7 +54,7 @@ public class Event {
     private EventPlace eventPlace;
 
     @OneToMany(targetEntity = Tag.class, fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST})
-    @JoinTable(name = "events_tags",
+    @JoinTable(name = "events_tags", schema = "events",
             joinColumns = @JoinColumn(name = "event_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private Set<Tag> tags;

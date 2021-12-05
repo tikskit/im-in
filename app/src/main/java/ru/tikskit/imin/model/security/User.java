@@ -23,7 +23,7 @@ import javax.persistence.UniqueConstraint;
 import java.util.Set;
 
 @Entity
-@Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = {"username"}))
+@Table(name = "users", schema = "security", uniqueConstraints = @UniqueConstraint(columnNames = {"username"}))
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -45,7 +45,7 @@ public class User {
     private String password;
 
     @OneToMany(targetEntity = Role.class, cascade = {CascadeType.PERSIST}, fetch = FetchType.LAZY)
-    @JoinTable(name = "users_roles",
+    @JoinTable(name = "users_roles", schema = "security",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;

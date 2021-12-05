@@ -26,8 +26,16 @@ public class OrganizerTest {
         OffsetDateTime dateTime = Calendar.getInstance().toInstant().atOffset(ZoneOffset.of("+07:00"));
 
         Event event = new Event(0, organizer, "My first event", dateTime, EventStatus.ARRANGED,
-                new EventPlace(new Address("Russia", "Novosibirskaya oblast", "Novosibirsk",
-                        "Tulenina", "404", null, null)), null);
+                new EventPlace(
+                        Address
+                                .builder()
+                                .country("Россия")
+                                .reqion("Новосибирская область")
+                                .city("Новосибирск")
+                                .street("Тюленина")
+                                .building("404")
+                                .build()),
+                null);
 
         em.persist(event);
         em.flush();
@@ -39,9 +47,10 @@ public class OrganizerTest {
         Organizer organizer = em.persist(new Organizer());
         OffsetDateTime dateTime = Calendar.getInstance().toInstant().atOffset(ZoneOffset.of("+07:00"));
 
+
         Event event = new Event(0, organizer, "My first event", dateTime, EventStatus.ARRANGED,
-                new EventPlace(EventPlaceType.ADDRESS, new Address(null, null, null,
-                        null, null, "flat", "extra"), "uri", new GeoPoint()), null);
+                new EventPlace(EventPlaceType.ADDRESS, Address.builder().flat("404").extra("some extra info").build(),
+                        "uri", new GeoPoint()), null);
 
         assertThatThrownBy(() -> {
             em.persist(event);
@@ -69,8 +78,8 @@ public class OrganizerTest {
         OffsetDateTime dateTime = Calendar.getInstance().toInstant().atOffset(ZoneOffset.of("+07:00"));
 
         Event event = new Event(0, organizer, "My first event", dateTime, EventStatus.ARRANGED,
-                new EventPlace(EventPlaceType.URI, new Address(null, null, null,
-                        null, null, "flat", "extra"), null, new GeoPoint()), null);
+                new EventPlace(EventPlaceType.URI, Address.builder().flat("404").extra("some extra info").build(),
+                        null, new GeoPoint()), null);
 
         assertThatThrownBy(() -> {
             em.persist(event);
@@ -98,8 +107,8 @@ public class OrganizerTest {
         OffsetDateTime dateTime = Calendar.getInstance().toInstant().atOffset(ZoneOffset.of("+07:00"));
 
         Event event = new Event(0, organizer, "My first event", dateTime, EventStatus.ARRANGED,
-                new EventPlace(EventPlaceType.GEO, new Address(null, null, null,
-                        null, null, "flat", "extra"), "https://youtube.com", null), null);
+                new EventPlace(EventPlaceType.GEO, Address.builder().flat("404").extra("some extra info").build(),
+                        "https://youtube.com", null), null);
 
         assertThatThrownBy(() -> {
             em.persist(event);

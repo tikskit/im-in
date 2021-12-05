@@ -1,6 +1,7 @@
 package ru.tikskit.imin.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,12 +12,16 @@ import javax.persistence.Embeddable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Builder
 public class Address {
     @Column(name = "country")
     private String country;
 
     @Column(name = "region")
     private String reqion;
+
+    @Column(name = "county")
+    private String county;
 
     @Column(name = "city")
     private String city;

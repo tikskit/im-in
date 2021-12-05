@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Data
-@Table(name = "organizers")
+@Table(name = "organizers", schema = "actors")
 public class Organizer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -20,7 +20,7 @@ import javax.persistence.UniqueConstraint;
 @ToString(of = {"role"})
 @Data
 @Entity
-@Table(name = "roles", uniqueConstraints = @UniqueConstraint(columnNames = {"role"}))
+@Table(name = "roles", schema = "security", uniqueConstraints = @UniqueConstraint(columnNames = {"role"}))
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

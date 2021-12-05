@@ -13,7 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tags")
+@Table(name = "tags", schema = "events")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
