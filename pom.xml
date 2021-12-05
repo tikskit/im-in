@@ -35,6 +35,7 @@
 
     <modules>
         <module>app</module>
+        <module>kladr_import</module>
     </modules>
 
     <build>
