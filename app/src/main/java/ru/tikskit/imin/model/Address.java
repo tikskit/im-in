@@ -8,6 +8,16 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+/**
+ * Структуру федерального деления возмем из той, которая используется в Here:
+ * Страны, country (напр., Россия)
+ *   Регионы, state (Напр., Новосибирская область)
+ *     Районы, county (напр., Тогучинский район)
+ *       Города, city (Напр., село Буготак)
+ * В приложении важно, чтобы адреса однозначно идентифицировались, воспроизводить структуру федерального деления не
+ * обязательно
+ */
+
 @Embeddable
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,8 +27,8 @@ public class Address {
     @Column(name = "country")
     private String country;
 
-    @Column(name = "region")
-    private String reqion;
+    @Column(name = "state")
+    private String state;
 
     @Column(name = "county")
     private String county;

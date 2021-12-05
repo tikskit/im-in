@@ -12,7 +12,7 @@ public class AddressConverterImpl implements AddressConverter {
         if (address == null) {
             return null;
         } else {
-            return new AddressDto(address.getCountry(), address.getReqion(), address.getCity(), address.getStreet(),
+            return new AddressDto(address.getCountry(), address.getState(), address.getCity(), address.getStreet(),
                     address.getBuilding());
         }
     }

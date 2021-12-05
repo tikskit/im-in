@@ -50,7 +50,7 @@
             </column>
 
             <column name="country" type="VARCHAR(255)"/>
-            <column name="region" type="VARCHAR(255)"/>
+            <column name="state" type="VARCHAR(255)"/>
             <column name="county" type="VARCHAR(255)"/>
             <column name="city" type="VARCHAR(255)"/>
             <column name="street" type="VARCHAR(255)"/>
@@ -81,7 +81,7 @@
             ALTER TABLE events.events
             ADD CONSTRAINT ck_placetype
             CHECK(
-                (placetype = 0 AND country IS NOT NULL AND region IS NOT NULL AND city IS NOT NULL AND street IS NOT NULL
+                (placetype = 0 AND country IS NOT NULL AND state IS NOT NULL AND city IS NOT NULL AND street IS NOT NULL
                     AND building IS NOT NULL)
                 OR (placetype = 1 AND lat IS NOT NULL AND lng IS NOT NULL) OR (placetype = 2 AND uri IS NOT NULL)
             );

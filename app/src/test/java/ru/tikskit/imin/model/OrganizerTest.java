@@ -30,7 +30,7 @@ public class OrganizerTest {
                         Address
                                 .builder()
                                 .country("Россия")
-                                .reqion("Новосибирская область")
+                                .state("Новосибирская область")
                                 .city("Новосибирск")
                                 .street("Тюленина")
                                 .building("404")
