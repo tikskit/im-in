@@ -190,4 +190,10 @@
         </createIndex>
     </changeSet>
 
+    <changeSet id="0019" author="tikskit">
+        <sql dbms="postgresql, mssql" endDelimiter=";">
+            CREATE INDEX ix_address ON events.events (country, city, street) WHERE placetype = 0
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
