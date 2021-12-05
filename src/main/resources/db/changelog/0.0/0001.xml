@@ -42,7 +42,7 @@
             <column name="extra" type="VARCHAR(255)"/>
 
             <column name="lat" type="double precision"/>
-            <column name="lon" type="double precision"/>
+            <column name="lng" type="double precision"/>
 
             <column name="uri" type="VARCHAR"/>
 
@@ -65,7 +65,7 @@
             CHECK(
                 (placetype = 0 AND country IS NOT NULL AND region IS NOT NULL AND city IS NOT NULL AND street IS NOT NULL
                     AND building IS NOT NULL)
-                OR (placetype = 1 AND lat IS NOT NULL AND lon IS NOT NULL) OR (placetype = 2 AND uri IS NOT NULL)
+                OR (placetype = 1 AND lat IS NOT NULL AND lng IS NOT NULL) OR (placetype = 2 AND uri IS NOT NULL)
             );
         </sql>
     </changeSet>

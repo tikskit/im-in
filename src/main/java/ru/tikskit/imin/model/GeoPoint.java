@@ -14,6 +14,6 @@ import javax.persistence.Embeddable;
 public class GeoPoint {
     @Column(name = "lat")
     private float lat;
-    @Column(name = "lon")
-    private float lon;
+    @Column(name = "lng")
+    private float lng;
 }

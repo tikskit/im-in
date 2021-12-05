@@ -39,7 +39,7 @@ import static org.mockito.Mockito.when;
 @TestPropertySource
 class ActuatorSecurityTest {
 
-    // todo разобраться, почему не работает тестирование актуатора
+    // todo разобраться, почему не работает тестирование актуатора или написать HealthIndicator
 /*
     @Configuration
     @ComponentScan(basePackages = {"ru.tikskit.imin.security", "ru.tikskit.imin.services.security"})
