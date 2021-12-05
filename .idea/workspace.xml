@@ -1,0 +1,636 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:main" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b1617440-5889-40ba-8f07-e346cdc27494" name="Default Changelist" comment="1. Spring security involved&#10;2. Users and roles added&#10;3. Tests configuration improved">
+      <change afterPath="$PROJECT_DIR$/app/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/app/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/app/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/app/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postgre.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/app/postgre.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/ImInApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/ImInApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/config/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/config/AppConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/health/GeocoderHealthIndicator.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/health/GeocoderHealthIndicator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/model/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/model/Address.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/model/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/model/Event.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/model/EventPlace.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/model/EventPlace.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/model/EventPlaceType.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/model/EventPlaceType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/model/EventStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/model/EventStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/model/EventStatusConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/model/EventStatusConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/model/EventStatusNotRecognized.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/model/EventStatusNotRecognized.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/model/GeoPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/model/GeoPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/model/Organizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/model/Organizer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/model/Participant.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/model/Participant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/model/PlaceTypeCodeNotRecognized.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/model/PlaceTypeCodeNotRecognized.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/model/PlaceTypeConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/model/PlaceTypeConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/model/Tag.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/model/Tag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/model/security/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/model/security/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/model/security/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/model/security/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/repositories/security/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/repositories/security/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/security/DatabaseUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/security/DatabaseUserDetailsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/security/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/security/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/services/AddressConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/services/AddressConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/services/AddressConverterImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/services/AddressConverterImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/services/dto/AddressDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/services/dto/AddressDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/services/event/EventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/services/event/EventService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/services/event/SearchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/services/event/SearchService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/services/geocode/AddressResolverService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/services/geocode/AddressResolverService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/services/geocode/AddressResolverServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/services/geocode/AddressResolverServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/services/geocode/AddressToUriConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/services/geocode/AddressToUriConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/services/geocode/Geocoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/services/geocode/Geocoder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/services/geocode/LatLng.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/services/geocode/LatLng.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/services/geocode/RequestResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/services/geocode/RequestResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/services/geocode/ResultStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/services/geocode/ResultStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/services/geocode/here/AddressToUriConverterHere.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/services/geocode/here/AddressToUriConverterHere.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/services/geocode/here/GeocoderHere.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/services/geocode/here/GeocoderHere.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/services/geocode/here/PositionConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/services/geocode/here/PositionConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/services/geocode/here/PositionConverterImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/services/geocode/here/PositionConverterImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/services/geocode/here/QueryBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/services/geocode/here/QueryBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/services/geocode/here/QueryBuilderImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/services/geocode/here/QueryBuilderImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/services/geocode/here/RestTemplateConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/services/geocode/here/RestTemplateConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/services/geocode/here/dto/GeoData.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/services/geocode/here/dto/GeoData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/services/geocode/here/dto/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/services/geocode/here/dto/Position.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/services/geocode/here/dto/Result.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/services/geocode/here/dto/Result.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/services/geocode/here/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/services/geocode/here/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/services/security/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/services/security/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/tikskit/imin/services/security/UserServiceJpa.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/services/security/UserServiceJpa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/changelog/0.0/0001.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/db/changelog/0.0/0001.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/changelog/data/0001.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/db/changelog/data/0001.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog-master.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/resources/db/changelog/db.changelog-master.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/tikskit/imin/model/OrganizerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/ru/tikskit/imin/model/OrganizerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/tikskit/imin/model/RoleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/ru/tikskit/imin/model/RoleTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/tikskit/imin/model/TagTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/ru/tikskit/imin/model/TagTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/tikskit/imin/model/UserRoleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/ru/tikskit/imin/model/UserRoleTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/tikskit/imin/model/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/ru/tikskit/imin/model/UserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/tikskit/imin/security/ActuatorSecurityTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/ru/tikskit/imin/security/ActuatorSecurityTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/tikskit/imin/services/geocode/AddressResolverServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/ru/tikskit/imin/services/geocode/AddressResolverServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/tikskit/imin/services/geocode/here/AddressToUriConverterHereTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/ru/tikskit/imin/services/geocode/here/AddressToUriConverterHereTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/tikskit/imin/services/geocode/here/GeocoderHereTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/ru/tikskit/imin/services/geocode/here/GeocoderHereTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/tikskit/imin/services/geocode/here/QueryBuilderImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/ru/tikskit/imin/services/geocode/here/QueryBuilderImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/ru/tikskit/imin/security/ActuatorSecurityTest.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/resources/ru/tikskit/imin/security/ActuatorSecurityTest.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/ru/tikskit/imin/services/geocode/here/AddressToUriConverterHereTest.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/resources/ru/tikskit/imin/services/geocode/here/AddressToUriConverterHereTest.properties" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DebuggerManager">
+    <breakpoint_any converted="true">
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </breakpoint_any>
+    <breakpoint_rules converted="true" />
+    <ui_properties converted="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Class" />
+        <option value="JUnit5 Test Class" />
+        <option value="package-info" />
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="21ZWp2jurk5PH0EZu8jLQmOWEJV" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ExpandSpringBootJavaOptionsPanel" value="true" />
+    <property name="GoToClass.includeLibraries" value="false" />
+    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="jdk.selected.JAVA_MODULE" value="11.0.4" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.48321342" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="ru.tikskit.imin.security" />
+      <recent name="ru.tikskit.imin.repositories.security" />
+      <recent name="ru.tikskit.imin.services.geocode" />
+      <recent name="ru.tikskit.imin.services.geocode.here" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="ru.tikskit.imin.model" />
+      <recent name="ru.tikskit.imin.services.geocode" />
+      <recent name="ru.tikskit.imin.services.geocode.here" />
+      <recent name="ru.tikskit.imin" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\MyProjects\Java\im-in" />
+      <recent name="E:\MyProjects\Java\im-in\app" />
+      <recent name="E:\MyProjects\Java\im-in\src\test\resources\ru\tikskit\imin\security" />
+      <recent name="E:\MyProjects\Java\im-in\src\test\resources\ru\tikskit\imin\services\geocode\here" />
+      <recent name="E:\MyProjects\Java\im-in\src\test\resources\ru\tikskit\imin\services\geocode" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\MyProjects\Java\im-in\src\test\resources" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="ru.tikskit.imin.services.security" />
+      <recent name="ru.tikskit.imin.services.geocode.here" />
+      <recent name="ru.tikskit.imin.services.geocode.here.dto" />
+      <recent name="ru.tikskit.imin.services.addressresolve" />
+      <recent name="ru.tikskit.imin.services" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.ImInApplication">
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+    </configuration>
+    <configuration name="&lt;template&gt;" type="TestNG" default="true" selected="false">
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    </configuration>
+    <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
+      <Host>localhost</Host>
+      <Port>5050</Port>
+    </configuration>
+    <configuration name="&lt;template&gt;" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" default="true" selected="false">
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ActuatorSecurityTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="im-in" />
+      <option name="PACKAGE_NAME" value="ru.tikskit.imin.security" />
+      <option name="MAIN_CLASS_NAME" value="ru.tikskit.imin.security.ActuatorSecurityTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ActuatorSecurityTest.shouldGetActuator" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="im-in" />
+      <option name="PACKAGE_NAME" value="ru.tikskit.imin.security" />
+      <option name="MAIN_CLASS_NAME" value="ru.tikskit.imin.security.ActuatorSecurityTest" />
+      <option name="METHOD_NAME" value="shouldGetActuator" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in im-in" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="im-in" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ru in im-in" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="im-in" />
+      <option name="PACKAGE_NAME" value="ru" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ru.tikskit.imin.model in im-in" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="im-in" />
+      <option name="PACKAGE_NAME" value="ru.tikskit.imin.model" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ImInApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="app" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ru.tikskit.imin.ImInApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <envs>
+        <env name="PROPERTIES_PASSWORD" value="86d9DdkbaL" />
+      </envs>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.ActuatorSecurityTest" />
+      <item itemvalue="JUnit.ActuatorSecurityTest.shouldGetActuator" />
+      <item itemvalue="JUnit.ru.tikskit.imin.model in im-in" />
+      <item itemvalue="JUnit.ru in im-in" />
+      <item itemvalue="JUnit.All in im-in" />
+      <item itemvalue="Spring Boot.ImInApplication" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.All in im-in" />
+        <item itemvalue="JUnit.ActuatorSecurityTest" />
+        <item itemvalue="JUnit.ru in im-in" />
+        <item itemvalue="JUnit.ActuatorSecurityTest.shouldGetActuator" />
+        <item itemvalue="JUnit.ru.tikskit.imin.model in im-in" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b1617440-5889-40ba-8f07-e346cdc27494" name="Default Changelist" comment="" />
+      <created>1638149268032</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1638149268032</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="1">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+        <entry key="2">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+        <entry key="3">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="false" />
+                </map>
+              </option>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="1. Spring security involved&#10;2. Users and roles added&#10;3. Tests configuration improved" />
+    <option name="LAST_COMMIT_MESSAGE" value="1. Spring security involved&#10;2. Users and roles added&#10;3. Tests configuration improved" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="669" y="58" key="#Dockerfile" timestamp="1638372899825">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="669" y="58" key="#Dockerfile/0.0.1920.1040@0.0.1920.1040" timestamp="1638372899825" />
+    <state x="618" y="0" width="697" height="1040" key="#ImInApplication" timestamp="1638681839671">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="618" y="0" width="697" height="1040" key="#ImInApplication/0.0.1920.1040@0.0.1920.1040" timestamp="1638681839671" />
+    <state x="399" y="180" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1638681664536">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="399" y="180" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1638681664536" />
+    <state x="388" y="146" key="#com.intellij.ide.util.MemberChooser" timestamp="1638588065383">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="388" y="146" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1638588065383" />
+    <state x="162" y="241" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1638681654040">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="162" y="241" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1638681654040" />
+    <state x="615" y="444" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1638264082644">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="615" y="444" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1638264082644" />
+    <state x="725" y="388" width="469" height="269" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1638625609243">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="725" y="388" width="469" height="269" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040@0.0.1920.1040" timestamp="1638625609243" />
+    <state x="756" y="401" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1638264087646">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="756" y="401" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1920.1040@0.0.1920.1040" timestamp="1638264087646" />
+    <state x="373" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1638421671414">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="373" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1638421671414" />
+    <state x="222" y="44" width="1107" height="595" key="#xdebugger.evaluate" timestamp="1638622975562">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="222" y="44" width="1107" height="595" key="#xdebugger.evaluate/0.0.1920.1040@0.0.1920.1040" timestamp="1638622975562" />
+    <state x="705" y="364" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1638624583863">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="705" y="364" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040@0.0.1920.1040" timestamp="1638624583863" />
+    <state x="585" y="88" key="CommitChangelistDialog2" timestamp="1638669880190">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="585" y="88" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1638669880190" />
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1638623576117">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1638623576117" />
+    <state x="812" y="275" width="821" height="500" key="EnvironmentVariablesDialog" timestamp="1638341905487">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="812" y="275" width="821" height="500" key="EnvironmentVariablesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1638341905487" />
+    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1638680530431">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1638680530431" />
+    <state width="1877" height="274" key="GridCell.Tab.0.bottom" timestamp="1638682650554">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="274" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1638682650554" />
+    <state width="1877" height="274" key="GridCell.Tab.0.center" timestamp="1638682650554">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="274" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1638682650554" />
+    <state width="1877" height="274" key="GridCell.Tab.0.left" timestamp="1638682650554">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="274" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1638682650554" />
+    <state width="1877" height="274" key="GridCell.Tab.0.right" timestamp="1638682650554">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="274" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1638682650554" />
+    <state width="1877" height="274" key="GridCell.Tab.1.bottom" timestamp="1638682643801">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="274" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1638682643801" />
+    <state width="1877" height="274" key="GridCell.Tab.1.center" timestamp="1638682643800">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="274" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1638682643800" />
+    <state width="1877" height="274" key="GridCell.Tab.1.left" timestamp="1638682643800">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="274" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1638682643800" />
+    <state width="1877" height="274" key="GridCell.Tab.1.right" timestamp="1638682643800">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="274" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1638682643800" />
+    <state width="1877" height="338" key="GridCell.Tab.2.bottom" timestamp="1638629666617">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="338" key="GridCell.Tab.2.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1638629666617" />
+    <state width="1877" height="338" key="GridCell.Tab.2.center" timestamp="1638629666617">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="338" key="GridCell.Tab.2.center/0.0.1920.1040@0.0.1920.1040" timestamp="1638629666617" />
+    <state width="1877" height="338" key="GridCell.Tab.2.left" timestamp="1638629666617">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="338" key="GridCell.Tab.2.left/0.0.1920.1040@0.0.1920.1040" timestamp="1638629666617" />
+    <state width="1877" height="338" key="GridCell.Tab.2.right" timestamp="1638629666617">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="338" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1638629666617" />
+    <state x="783" y="222" key="RollbackChangesDialog" timestamp="1638678655951">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="783" y="222" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1638678655951" />
+    <state x="380" y="141" key="SettingsEditor" timestamp="1638681800951">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="380" y="141" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1638681800951" />
+    <state x="1188" y="333" width="570" height="524" key="StructurePopup" timestamp="1638615612261">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1188" y="333" width="570" height="524" key="StructurePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1638615612261" />
+    <state width="679" height="477" key="SwitcherDM" timestamp="1638670346682">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="679" height="477" key="SwitcherDM/0.0.1920.1040@0.0.1920.1040" timestamp="1638670346682" />
+    <state width="968" height="528" key="XDebugger.FullValuePopup" timestamp="1638358977807">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="968" height="528" key="XDebugger.FullValuePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1638358977807" />
+    <state x="719" y="341" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1638541392516">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="719" y="341" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1638541392516" />
+    <state x="666" y="255" width="587" height="530" key="find.popup" timestamp="1638668602290">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="666" y="255" width="587" height="530" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1638668602290" />
+    <state x="342" y="140" key="new project wizard" timestamp="1638678883457">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="342" y="140" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1638678883457" />
+    <state x="616" y="240" key="run.anything.popup" timestamp="1638354778047">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1638354778047" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1638669834031">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1638669834031" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/services/geocode/here/GeocoderHere.java</url>
+          <line>55</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/services/geocode/here/GeocoderHere.java</url>
+          <line>63</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/ru/tikskit/imin/ImInApplication.java</url>
+          <line>14</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="JUnit">
+        <watch expression="String.format(&quot;%s=1&quot;, AddressToUriConverterHere.LIMIT_PARAM_NAME)" />
+        <watch expression="uri.getQuery()" />
+        <watch expression="String.format(&quot;%s=%s&quot;, AddressToUriConverterHere.API_KEY_PARAM_NAME, apiKey)" />
+        <watch expression="e.getStatusCode()" />
+      </configuration>
+    </watches-manager>
+  </component>
+</project>
