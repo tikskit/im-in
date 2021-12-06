@@ -5,6 +5,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import ru.tikskit.imin.model.Address;
+import ru.tikskit.imin.model.Event;
+import ru.tikskit.imin.model.EventPlace;
+import ru.tikskit.imin.model.EventStatus;
+import ru.tikskit.imin.model.Organizer;
+import ru.tikskit.imin.repositories.event.OrganizerRepository;
+import ru.tikskit.imin.services.event.EventService;
+
+import java.time.OffsetDateTime;
 
 @SpringBootApplication
 @EnableCaching
@@ -15,6 +24,28 @@ public class ImInApplication {
         PasswordEncoder passwordEncoder = context.getBean(PasswordEncoder.class);
 
         System.out.println("Supeuser's pass: " + passwordEncoder.encode("QWEasd"));
+
+
+        OrganizerRepository organizerRepository = context.getBean(OrganizerRepository.class);
+        Organizer org = organizerRepository.save(new Organizer());
+
+
+        EventService eventService = context.getBean(EventService.class);
+        Event event = new Event(0,
+                org,
+                "test event",
+                OffsetDateTime.now(),
+                EventStatus.ARRANGED,
+                new EventPlace(
+                        Address.builder()
+                                .country("Россия")
+                                .state("Московская область")
+                                .city("Москва")
+                                .street("Одесская")
+                                .building("23к1")
+                                .build()),
+                null);
+        eventService.arrange(event);
 
 /*
         AddressResolverService resolver = context.getBean(AddressResolverService.class);

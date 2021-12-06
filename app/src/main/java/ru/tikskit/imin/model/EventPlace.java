@@ -29,6 +29,7 @@ public class EventPlace {
     @Column(name = "uri")
     private String uri;
 
+//    @Column(name = "geo", columnDefinition = "GEOGRAPHY(POINT)")
     @Column(name = "geo")
     private Point geo;
 

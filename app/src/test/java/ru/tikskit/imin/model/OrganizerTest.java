@@ -8,8 +8,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
-import ru.tikskit.imin.services.WktService;
-import ru.tikskit.imin.services.WktServiceImpl;
+import ru.tikskit.imin.services.geocode.LanLngToPointConverterImpl;
+import ru.tikskit.imin.services.geocode.LatLng;
 
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
@@ -20,14 +20,14 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 
 @DataJpaTest()
-@Import(WktServiceImpl.class)
+@Import(LanLngToPointConverterImpl.class)
 @ComponentScan(basePackages = {"ru.tikskit.imin.config"})
 public class OrganizerTest {
 
     @Autowired
     TestEntityManager em;
     @Autowired
-    WktService wktService;
+    LanLngToPointConverterImpl lanLngToPointConverter;
 
     @Test
     @DisplayName("Должны сохраняться пространственные точки в H2")
@@ -37,7 +37,7 @@ public class OrganizerTest {
 
         Event event = new Event(0, organizer, "My first event", dateTime, EventStatus.ARRANGED,
                 new EventPlace(EventPlaceType.GEO, Address.builder().flat("404").extra("some extra info").build(),
-                        null, wktService.wkt2Point("POINT (2 5)")), null);
+                        null, lanLngToPointConverter.convert2Point(new LatLng(2, 5))), null);
 
         em.persist(event);
         em.flush();
@@ -107,7 +107,7 @@ public class OrganizerTest {
 
         Event event = new Event(0, organizer, "My first event", dateTime, EventStatus.ARRANGED,
                 new EventPlace(EventPlaceType.URI, Address.builder().flat("404").extra("some extra info").build(),
-                        null, wktService.wkt2Point("POINT (2 5)")), null);
+                        null, lanLngToPointConverter.convert2Point(new LatLng(2, 5))), null);
 
         assertThatThrownBy(() -> {
             em.persist(event);
@@ -126,7 +126,7 @@ public class OrganizerTest {
         OffsetDateTime dateTime = Calendar.getInstance().toInstant().atOffset(ZoneOffset.of("+07:00"));
 
         Event event = new Event(0, organizer, "My first event", dateTime, EventStatus.ARRANGED,
-                new EventPlace(wktService.wkt2Point("POINT (2 5)")), null);
+                new EventPlace(lanLngToPointConverter.convert2Point(new LatLng(2, 5))), null);
 
         em.persist(event);
         em.flush();
@@ -173,7 +173,7 @@ public class OrganizerTest {
         Organizer organizer = em.persist(new Organizer());
         OffsetDateTime dateTime = Calendar.getInstance().toInstant().atOffset(ZoneOffset.of("+07:00"));
         Event event = em.persist(new Event(0, organizer, "My first event", dateTime, EventStatus.ARRANGED,
-                new EventPlace(wktService.wkt2Point("POINT (2 5)")), null));
+                new EventPlace(lanLngToPointConverter.convert2Point(new LatLng(2, 5))), null));
         em.flush();
         long orgId = organizer.getId();
         em.remove(event);
@@ -190,7 +190,7 @@ public class OrganizerTest {
         Organizer organizer = em.persist(new Organizer());
         OffsetDateTime dateTime = Calendar.getInstance().toInstant().atOffset(ZoneOffset.of("+07:00"));
         Event event = em.persist(new Event(0, organizer, "My first event", dateTime, EventStatus.ARRANGED,
-                new EventPlace(wktService.wkt2Point("POINT (2 5)")), null));
+                new EventPlace(lanLngToPointConverter.convert2Point(new LatLng(2, 5))), null));
         em.flush();
         long eventId = event.getId();
         em.remove(organizer);
@@ -208,9 +208,9 @@ public class OrganizerTest {
 
         OffsetDateTime dateTime = Calendar.getInstance().toInstant().atOffset(ZoneOffset.of("+07:00"));
         Event event1 = em.persist(new Event(0, organizer1, "My first event", dateTime, EventStatus.ARRANGED,
-                new EventPlace(wktService.wkt2Point("POINT (2 5)")), null));
+                new EventPlace(lanLngToPointConverter.convert2Point(new LatLng(2, 5))), null));
         Event event2 = em.persist(new Event(0, organizer2, "My first event", dateTime, EventStatus.ARRANGED,
-                new EventPlace(wktService.wkt2Point("POINT (2 5)")), null));
+                new EventPlace(lanLngToPointConverter.convert2Point(new LatLng(2, 5))), null));
         em.flush();
         long eventId1 = event1.getId();
         long eventId2 = event2.getId();

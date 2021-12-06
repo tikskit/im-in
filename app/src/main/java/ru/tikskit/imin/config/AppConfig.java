@@ -3,6 +3,7 @@ package ru.tikskit.imin.config;
 import org.jasypt.encryption.StringEncryptor;
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.jasypt.iv.RandomIvGenerator;
+import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.io.WKTReader;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.CacheManager;
@@ -33,7 +34,6 @@ public class AppConfig {
 
     @Bean
     public WKTReader wktReader() {
-        return new WKTReader();
+        return new WKTReader(new GeometryFactory());
     }
-
 }
