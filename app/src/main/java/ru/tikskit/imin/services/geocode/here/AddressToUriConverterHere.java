@@ -27,7 +27,8 @@ public class AddressToUriConverterHere implements AddressToUriConverter {
         Objects.requireNonNull(address);
         return new QueryBuilderImpl()
                 .addPart(address.getCountry())
-                .addPart(address.getReqion())
+                .addPart(address.getState())
+                .addPart(address.getCounty())
                 .addPart(address.getCity())
                 .addPart(address.getStreet())
                 .addPart(address.getBuilding())

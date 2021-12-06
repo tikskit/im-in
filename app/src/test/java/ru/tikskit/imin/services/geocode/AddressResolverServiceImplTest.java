@@ -39,7 +39,7 @@ class AddressResolverServiceImplTest {
         final double lat = 10.2232d;
         final double lng = 23.43434d;
         LatLng latLng = new LatLng(lat, lng);
-        AddressDto addressDto = new AddressDto("Russia", "Novosibirskaya olbast", "Novosibirsk",
+        AddressDto addressDto = new AddressDto("Russia", "Novosibirskaya olbast", null, "Novosibirsk",
                 "Lenina", "1");
         when(geocoder.request(addressDto)).thenReturn(RequestResult.received(latLng));
 
@@ -52,7 +52,7 @@ class AddressResolverServiceImplTest {
     @Test
     @DisplayName("возвращать empty, если геокодер не вернул данные из-за ошибки")
     public void shouldReturnEmptyWhenExceptionOccurred() {
-        AddressDto addressDto = new AddressDto("Russia", "Novosibirskaya olbast", "Novosibirsk",
+        AddressDto addressDto = new AddressDto("Russia", "Novosibirskaya olbast", null, "Novosibirsk",
                 "Lenina", "1");
         when(geocoder.request(addressDto)).thenReturn(RequestResult.exception(HttpClientErrorException.create(
                 HttpStatus.BAD_REQUEST, "status", new HttpHeaders(), null, null)));
@@ -66,7 +66,7 @@ class AddressResolverServiceImplTest {
     @Test
     @DisplayName("возвращать empty, если геокодер вернул пустой набор")
     public void shouldReturnEmptyWhenNoData() {
-        AddressDto addressDto = new AddressDto("Russia", "Novosibirskaya olbast", "Novosibirsk",
+        AddressDto addressDto = new AddressDto("Russia", "Novosibirskaya olbast", null,"Novosibirsk",
                 "Lenina", "1");
         when(geocoder.request(addressDto)).thenReturn(RequestResult.empty());
 

@@ -10,7 +10,7 @@ class QueryBuilderImpl implements QueryBuilder {
 
     @Override
     public QueryBuilder addPart(String part) {
-        if (part != null) {
+        if (part != null && !part.isBlank()) {
             parts.add(part);
         }
         return this;

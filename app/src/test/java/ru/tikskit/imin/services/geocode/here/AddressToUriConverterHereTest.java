@@ -44,7 +44,7 @@ class AddressToUriConverterHereTest {
         AddressDto address = createExistingAddress();
         URI uri = converter.convert(address);
         assertThat(uri).isNotNull();
-        assertThat(uri.getQuery()).contains(address.getCountry(), address.getReqion(), address.getCity(),
+        assertThat(uri.getQuery()).contains(address.getCountry(), address.getState(), address.getCity(),
                 address.getStreet(), address.getBuilding());
     }
 
@@ -57,7 +57,7 @@ class AddressToUriConverterHereTest {
     }
 
     private AddressDto createExistingAddress() {
-        return new AddressDto("France", "Île-de-France", "Paris", "Rue Daunou", "5");
+        return new AddressDto("France", "Île-de-France", "Paris", "Paris", "Rue Daunou", "5");
     }
 
 }

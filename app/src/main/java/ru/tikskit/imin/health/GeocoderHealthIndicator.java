@@ -16,7 +16,8 @@ public class GeocoderHealthIndicator implements HealthIndicator {
     private final Geocoder geocoder;
 
     private AddressDto createExistingAddress() {
-        return new AddressDto("France", "Île-de-France", "Paris", "Rue Daunou", "5");
+        return new AddressDto("France", "Île-de-France", "Paris", "Paris", "Rue Daunou",
+                "5");
     }
 
     @Override
