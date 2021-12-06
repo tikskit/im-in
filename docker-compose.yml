@@ -16,7 +16,7 @@ services:
     networks:
       - nw
   postgres:
-    image: "postgres:14"
+    image: "postgis/postgis:14-master"
     ports:
       - "5432:5432"
     environment:
