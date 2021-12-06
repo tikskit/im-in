@@ -3,6 +3,7 @@ package ru.tikskit.imin.config;
 import org.jasypt.encryption.StringEncryptor;
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.jasypt.iv.RandomIvGenerator;
+import org.locationtech.jts.io.WKTReader;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
@@ -18,6 +19,7 @@ public class AppConfig {
 
     /**
      * Шифровальщик/дешифровальщик для зашифрованных настроек в application.yml
+     *
      * @param password Пароль для шифрования/дешифрования
      */
     @Bean
@@ -27,6 +29,11 @@ public class AppConfig {
         encryptor.setPassword(password);
         encryptor.setIvGenerator(new RandomIvGenerator());
         return encryptor;
+    }
+
+    @Bean
+    public WKTReader wktReader() {
+        return new WKTReader();
     }
 
 }

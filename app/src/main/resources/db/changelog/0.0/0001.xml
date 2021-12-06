@@ -58,8 +58,7 @@
             <column name="flat" type="VARCHAR(10)"/>
             <column name="extra" type="VARCHAR(255)"/>
 
-            <column name="lat" type="double precision"/>
-            <column name="lng" type="double precision"/>
+            <column name="geo" type="GEOMETRY"/>
 
             <column name="uri" type="VARCHAR"/>
 
@@ -83,7 +82,7 @@
             CHECK(
                 (placetype = 0 AND country IS NOT NULL AND state IS NOT NULL AND city IS NOT NULL AND street IS NOT NULL
                     AND building IS NOT NULL)
-                OR (placetype = 1 AND lat IS NOT NULL AND lng IS NOT NULL) OR (placetype = 2 AND uri IS NOT NULL)
+                OR (placetype = 1 AND geo IS NOT NULL) OR (placetype = 2 AND uri IS NOT NULL)
             );
         </sql>
     </changeSet>
@@ -193,6 +192,13 @@
     <changeSet id="0019" author="tikskit">
         <sql dbms="postgresql, mssql" endDelimiter=";">
             CREATE INDEX ix_address ON events.events (country, city, street) WHERE placetype = 0
+        </sql>
+    </changeSet>
+
+    <changeSet id="0020" author="tikskit">
+        <sql dbms="h2" endDelimiter=";">
+            CREATE ALIAS IF NOT EXISTS H2GIS_SPATIAL FOR "org.h2gis.functions.factory.H2GISFunctions.load";
+            CALL H2GIS_SPATIAL();
         </sql>
     </changeSet>
 

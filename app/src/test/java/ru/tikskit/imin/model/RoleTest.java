@@ -1,6 +1,5 @@
 package ru.tikskit.imin.model;
 
-import org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +28,7 @@ public class RoleTest {
         })
                 .getCause()
                 .getCause()
-                .isInstanceOf(JdbcSQLIntegrityConstraintViolationException.class)
+                .isInstanceOf(Exception.class)
                 .hasMessageContaining("c_role_unique".toUpperCase());
     }
 

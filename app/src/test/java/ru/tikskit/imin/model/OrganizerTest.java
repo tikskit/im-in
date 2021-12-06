@@ -3,8 +3,13 @@ package ru.tikskit.imin.model;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Import;
+import ru.tikskit.imin.services.WktService;
+import ru.tikskit.imin.services.WktServiceImpl;
 
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
@@ -14,10 +19,29 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 
-@DataJpaTest
+@DataJpaTest()
+@Import(WktServiceImpl.class)
+@ComponentScan(basePackages = {"ru.tikskit.imin.config"})
 public class OrganizerTest {
+
     @Autowired
     TestEntityManager em;
+    @Autowired
+    WktService wktService;
+
+    @Test
+    @DisplayName("Должны сохраняться пространственные точки в H2")
+    public void shouldSavePoints() {
+        Organizer organizer = em.persist(new Organizer());
+        OffsetDateTime dateTime = Calendar.getInstance().toInstant().atOffset(ZoneOffset.of("+07:00"));
+
+        Event event = new Event(0, organizer, "My first event", dateTime, EventStatus.ARRANGED,
+                new EventPlace(EventPlaceType.GEO, Address.builder().flat("404").extra("some extra info").build(),
+                        null, wktService.wkt2Point("POINT (2 5)")), null);
+
+        em.persist(event);
+        em.flush();
+    }
 
     @Test
     @DisplayName("Должно сохраняться нормально, если EventPlaceType.ADDRESS и все необходимые поля заданы")
@@ -50,12 +74,16 @@ public class OrganizerTest {
 
         Event event = new Event(0, organizer, "My first event", dateTime, EventStatus.ARRANGED,
                 new EventPlace(EventPlaceType.ADDRESS, Address.builder().flat("404").extra("some extra info").build(),
-                        "uri", new GeoPoint()), null);
+                        "uri", null), null);
 
         assertThatThrownBy(() -> {
             em.persist(event);
             em.flush();
-        }).isInstanceOf(Exception.class);
+        })
+                .isInstanceOf(Exception.class)
+                .getCause()
+                .getCause()
+                .hasMessageContaining("CK_PLACETYPE");
     }
 
     @Test
@@ -79,12 +107,16 @@ public class OrganizerTest {
 
         Event event = new Event(0, organizer, "My first event", dateTime, EventStatus.ARRANGED,
                 new EventPlace(EventPlaceType.URI, Address.builder().flat("404").extra("some extra info").build(),
-                        null, new GeoPoint()), null);
+                        null, wktService.wkt2Point("POINT (2 5)")), null);
 
         assertThatThrownBy(() -> {
             em.persist(event);
             em.flush();
-        }).isInstanceOf(Exception.class);
+        })
+                .isInstanceOf(Exception.class)
+                .getCause()
+                .getCause()
+                .hasMessageContaining("CK_PLACETYPE");
     }
 
     @Test
@@ -94,7 +126,7 @@ public class OrganizerTest {
         OffsetDateTime dateTime = Calendar.getInstance().toInstant().atOffset(ZoneOffset.of("+07:00"));
 
         Event event = new Event(0, organizer, "My first event", dateTime, EventStatus.ARRANGED,
-                new EventPlace(new GeoPoint(10f, 20f)), null);
+                new EventPlace(wktService.wkt2Point("POINT (2 5)")), null);
 
         em.persist(event);
         em.flush();
@@ -113,7 +145,11 @@ public class OrganizerTest {
         assertThatThrownBy(() -> {
             em.persist(event);
             em.flush();
-        }).isInstanceOf(Exception.class);
+        })
+                .isInstanceOf(Exception.class)
+                .getCause()
+                .getCause()
+                .hasMessageContaining("CK_PLACETYPE");
     }
 
     @Test
@@ -128,7 +164,6 @@ public class OrganizerTest {
             em.persist(event);
             em.flush();
         })
-                .as("")
                 .isInstanceOf(Exception.class);
     }
 
@@ -138,7 +173,7 @@ public class OrganizerTest {
         Organizer organizer = em.persist(new Organizer());
         OffsetDateTime dateTime = Calendar.getInstance().toInstant().atOffset(ZoneOffset.of("+07:00"));
         Event event = em.persist(new Event(0, organizer, "My first event", dateTime, EventStatus.ARRANGED,
-                new EventPlace(new GeoPoint(10f, 20f)), null));
+                new EventPlace(wktService.wkt2Point("POINT (2 5)")), null));
         em.flush();
         long orgId = organizer.getId();
         em.remove(event);
@@ -155,7 +190,7 @@ public class OrganizerTest {
         Organizer organizer = em.persist(new Organizer());
         OffsetDateTime dateTime = Calendar.getInstance().toInstant().atOffset(ZoneOffset.of("+07:00"));
         Event event = em.persist(new Event(0, organizer, "My first event", dateTime, EventStatus.ARRANGED,
-                new EventPlace(new GeoPoint(10f, 20f)), null));
+                new EventPlace(wktService.wkt2Point("POINT (2 5)")), null));
         em.flush();
         long eventId = event.getId();
         em.remove(organizer);
@@ -173,9 +208,9 @@ public class OrganizerTest {
 
         OffsetDateTime dateTime = Calendar.getInstance().toInstant().atOffset(ZoneOffset.of("+07:00"));
         Event event1 = em.persist(new Event(0, organizer1, "My first event", dateTime, EventStatus.ARRANGED,
-                new EventPlace(new GeoPoint(10f, 20f)), null));
+                new EventPlace(wktService.wkt2Point("POINT (2 5)")), null));
         Event event2 = em.persist(new Event(0, organizer2, "My first event", dateTime, EventStatus.ARRANGED,
-                new EventPlace(new GeoPoint(10f, 20f)), null));
+                new EventPlace(wktService.wkt2Point("POINT (2 5)")), null));
         em.flush();
         long eventId1 = event1.getId();
         long eventId2 = event2.getId();

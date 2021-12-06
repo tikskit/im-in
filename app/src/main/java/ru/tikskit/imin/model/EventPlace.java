@@ -3,6 +3,7 @@ package ru.tikskit.imin.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.locationtech.jts.geom.Point;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -28,8 +29,8 @@ public class EventPlace {
     @Column(name = "uri")
     private String uri;
 
-    @Embedded
-    private GeoPoint geo;
+    @Column(name = "geo")
+    private Point geo;
 
     public EventPlace(Address address) {
         this(EventPlaceType.ADDRESS, address, null, null);
@@ -39,7 +40,7 @@ public class EventPlace {
         this(EventPlaceType.URI, null, uri, null);
     }
 
-    public EventPlace(GeoPoint geo) {
+    public EventPlace(Point geo) {
         this(EventPlaceType.GEO, null, null, geo);
     }
 }

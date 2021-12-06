@@ -66,8 +66,22 @@
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
+			<!--
+			Нужна именно версия 1.4.197, так как только она работает с расширением h2gis, которое нужно, чтобы в тестах
+			работала GIS
+			https://stackoverflow.com/a/60546343/1133780
+			-->
+			<version>1.4.197</version>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.orbisgis</groupId>
+			<artifactId>h2gis</artifactId>
+			<version>1.5.0</version>
+			<scope>test</scope>
+		</dependency>
+
 		<dependency>
 			<groupId>com.github.ulisesbocchio</groupId>
 			<artifactId>jasypt-spring-boot-starter</artifactId>
@@ -80,6 +94,10 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-spatial</artifactId>
 		</dependency>
 	</dependencies>
 
