@@ -10,14 +10,19 @@ import ru.tikskit.imin.model.Event;
 import ru.tikskit.imin.model.EventPlace;
 import ru.tikskit.imin.model.EventStatus;
 import ru.tikskit.imin.model.Organizer;
+import ru.tikskit.imin.repositories.event.EventRepository;
 import ru.tikskit.imin.repositories.event.OrganizerRepository;
 import ru.tikskit.imin.services.event.EventService;
+import ru.tikskit.imin.services.geocode.LanLngToPointConverter;
+import ru.tikskit.imin.services.geocode.LatLng;
 
 import java.time.OffsetDateTime;
+import java.util.Set;
 
 @SpringBootApplication
 @EnableCaching
 public class ImInApplication {
+
 
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(ImInApplication.class, args);
@@ -25,8 +30,13 @@ public class ImInApplication {
 
         System.out.println("Supeuser's pass: " + passwordEncoder.encode("QWEasd"));
 
+        EventRepository eventRepository = context.getBean(EventRepository.class);
+        LanLngToPointConverter lanLngToPointConverter = context.getBean(LanLngToPointConverter.class);
+        Set<Event> byDistance = eventRepository.findByDistance(lanLngToPointConverter.convert2Point(new LatLng(38.12, 55.123)), 100d);
+        byDistance.forEach(System.out::println);
 
-        OrganizerRepository organizerRepository = context.getBean(OrganizerRepository.class);
+
+/*        OrganizerRepository organizerRepository = context.getBean(OrganizerRepository.class);
         Organizer org = organizerRepository.save(new Organizer());
 
 
@@ -45,7 +55,7 @@ public class ImInApplication {
                                 .building("23к1")
                                 .build()),
                 null);
-        eventService.arrange(event);
+        eventService.arrange(event);*/
 
 /*
         AddressResolverService resolver = context.getBean(AddressResolverService.class);

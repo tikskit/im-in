@@ -15,3 +15,18 @@ Others would like to spend time doing actions they enjoy, together with other pe
 application for. They set parameters in filters, and the application searches events matching the parameters. If results 
 found the user can claim that they will take part in some of them, which lets the organizers and others know how many 
 people are going to come and how many empty slots left.
+
+
+Dependencies used:
+- Java 13
+- Docker
+- Maven
+- Spring boot 2.6
+- Spring security
+- Spring Data JPA
+- Rest Templates
+- Spring Actuator
+- JUnit 5
+- PostGIS
+- H2GIS
+- HERE Geocoding & Search API
