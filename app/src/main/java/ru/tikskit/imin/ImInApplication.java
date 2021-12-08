@@ -10,13 +10,16 @@ import ru.tikskit.imin.model.Event;
 import ru.tikskit.imin.model.EventPlace;
 import ru.tikskit.imin.model.EventStatus;
 import ru.tikskit.imin.model.Organizer;
+import ru.tikskit.imin.model.Tag;
 import ru.tikskit.imin.repositories.event.EventRepository;
 import ru.tikskit.imin.repositories.event.OrganizerRepository;
+import ru.tikskit.imin.repositories.event.TagRepository;
 import ru.tikskit.imin.services.event.EventService;
 import ru.tikskit.imin.services.geocode.LanLngToPointConverter;
 import ru.tikskit.imin.services.geocode.LatLng;
 
 import java.time.OffsetDateTime;
+import java.util.List;
 import java.util.Set;
 
 @SpringBootApplication
@@ -30,17 +33,18 @@ public class ImInApplication {
 
         System.out.println("Supeuser's pass: " + passwordEncoder.encode("QWEasd"));
 
+        TagRepository tagRepository = context.getBean(TagRepository.class);
+        OrganizerRepository organizerRepository = context.getBean(OrganizerRepository.class);
         EventRepository eventRepository = context.getBean(EventRepository.class);
         LanLngToPointConverter lanLngToPointConverter = context.getBean(LanLngToPointConverter.class);
-        Set<Event> byDistance = eventRepository.findByDistance(lanLngToPointConverter.convert2Point(new LatLng(38.12, 55.123)), 100d);
-        byDistance.forEach(System.out::println);
+        EventService eventService = context.getBean(EventService.class);
 
-
-/*        OrganizerRepository organizerRepository = context.getBean(OrganizerRepository.class);
+//        Set<Tag> tags = Set.of(new Tag(0, "someTag1"), new Tag(0, "someTag2"));
+        List<Tag> tags = tagRepository.findAll();
+/*
         Organizer org = organizerRepository.save(new Organizer());
 
 
-        EventService eventService = context.getBean(EventService.class);
         Event event = new Event(0,
                 org,
                 "test event",
@@ -54,8 +58,16 @@ public class ImInApplication {
                                 .street("Одесская")
                                 .building("23к1")
                                 .build()),
-                null);
-        eventService.arrange(event);*/
+                tags);
+
+        eventService.arrange(event);
+*/
+        List<Event> byDistance = eventRepository.findByDistance(
+                lanLngToPointConverter.convert2Point(new LatLng(38.12, 55.123)),
+                100d, tags);
+
+        byDistance.forEach(System.out::println);
+
 
 /*
         AddressResolverService resolver = context.getBean(AddressResolverService.class);
