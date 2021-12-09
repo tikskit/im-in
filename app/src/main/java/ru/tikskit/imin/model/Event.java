@@ -19,7 +19,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.time.OffsetDateTime;
-import java.util.Set;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -53,9 +53,9 @@ public class Event {
     @EqualsAndHashCode.Include
     private EventPlace eventPlace;
 
-    @OneToMany(targetEntity = Tag.class, fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST})
+    @OneToMany(targetEntity = Tag.class, fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})
     @JoinTable(name = "events_tags", schema = "events",
             joinColumns = @JoinColumn(name = "event_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id"))
-    private Set<Tag> tags;
+    private List<Tag> tags;
 }

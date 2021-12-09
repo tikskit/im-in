@@ -9,7 +9,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.util.Calendar;
-import java.util.Set;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 @DataJpaTest
@@ -26,7 +26,7 @@ public class TagTest {
         Event event = new Event(0, organizer, "My first event", dateTime, EventStatus.ARRANGED,
                 new EventPlace("http://youtube.com"), null);
 
-        event.setTags(Set.of(new Tag(0, "Занятие йогой"), new Tag(0, "Собрание курильщиков трубки"), new Tag(0, "BDSM-вечеринка")));
+        event.setTags(List.of(new Tag(0, "Занятие йогой"), new Tag(0, "Собрание курильщиков трубки"), new Tag(0, "BDSM-вечеринка")));
         long eventId = em.persist(event).getId();
         em.flush();
         em.clear();
