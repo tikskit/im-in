@@ -23,15 +23,18 @@ public class TagTest {
         Organizer organizer = em.persist(new Organizer());
         OffsetDateTime dateTime = Calendar.getInstance().toInstant().atOffset(ZoneOffset.of("+07:00"));
 
-        Event event = new Event(0, organizer, "My first event", dateTime, EventStatus.ARRANGED,
-                new EventPlace("http://youtube.com"), null);
+        Tag yoga = em.persist(new Tag(0, "Занятие йогой"));
+        Tag pipeSmoking = em.persist(new Tag(0, "Собрание курильщиков трубки"));
+        Tag bdsm = em.persist(new Tag(0, "BDSM-вечеринка"));
 
-        event.setTags(List.of(new Tag(0, "Занятие йогой"), new Tag(0, "Собрание курильщиков трубки"), new Tag(0, "BDSM-вечеринка")));
+        Event event = new Event(0, organizer, "My first event", dateTime, EventStatus.ARRANGED,
+                new EventPlace("http://youtube.com"), List.of(yoga, pipeSmoking, bdsm));
+
         long eventId = em.persist(event).getId();
         em.flush();
         em.clear();
 
         Event event1 = em.find(Event.class, eventId);
-        assertThat(event1.getTags()).isNotNull().size().isEqualTo(3);
+        assertThat(event1.getTags()).isNotNull().hasSize(3);
     }
 }
