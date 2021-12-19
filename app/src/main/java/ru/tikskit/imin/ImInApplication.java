@@ -99,7 +99,8 @@ public class ImInApplication {
                             .state("Центральный федеральный округ")
                             .city("Москва")
                             .street("Азовская")
-                            .build()
+                            .build(),
+                    List.of(partyTag, shoppingTag)
             );
             byAddress.forEach(System.out::println);
 
