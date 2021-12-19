@@ -28,12 +28,16 @@ public class StatesReader extends AbstractItemCountingItemStreamItemReader<State
             throw new Exception("DBF reader is instantiated already");
         }
 
-        Object[] row = dbfReader.nextRecord();
-        if (row != null) {
-            return rowToStateService.convert(row);
-        } else {
-            return null;
+        State state = null;
+        Object[] row;
+        while (state == null) {
+            row = dbfReader.nextRecord();
+            if (row == null) {
+                return null;
+            }
+            state = rowToStateService.convert(row); // вернет null, если текущая строка не state
         }
+        return state;
     }
 
     @Override
