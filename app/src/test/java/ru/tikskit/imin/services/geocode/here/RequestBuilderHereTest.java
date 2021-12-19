@@ -17,32 +17,32 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DisplayName("Конвертер адреса в URI должен")
 @SpringBootTest
 @TestPropertySource
-class AddressToUriConverterHereTest {
+class RequestBuilderHereTest {
 
     @Configuration
-    @Import(AddressToUriConverterHere.class)
+    @Import(RequestBuilderHere.class)
     public static class Config {
 
     }
 
     @Autowired
-    private AddressToUriConverterHere converter;
+    private RequestBuilderHere converter;
     @Value("${geocoding.here.apikey}")
     private String apiKey;
 
     @Test
     @DisplayName("добавлять в запрос ограничение на 1 записть")
     public void shouldAddLimitTo1Records() {
-        URI uri = converter.convert(createExistingAddress());
+        URI uri = converter.build(createExistingAddress());
         assertThat(uri).isNotNull();
-        assertThat(uri.getQuery()).contains(String.format("%s=1", AddressToUriConverterHere.LIMIT_PARAM_NAME));
+        assertThat(uri.getQuery()).contains(String.format("%s=1", RequestBuilderHere.LIMIT_PARAM_NAME));
     }
 
     @Test
     @DisplayName("добавлять адрес в запрос")
     public void shouldAddAddress() {
         AddressDto address = createExistingAddress();
-        URI uri = converter.convert(address);
+        URI uri = converter.build(address);
         assertThat(uri).isNotNull();
         assertThat(uri.getQuery()).contains(address.getCountry(), address.getState(), address.getCity(),
                 address.getStreet(), address.getBuilding());
@@ -51,9 +51,9 @@ class AddressToUriConverterHereTest {
     @Test
     @DisplayName("добавлять apiKey")
     public void shouldAddApiKey() {
-        URI uri = converter.convert(createExistingAddress());
+        URI uri = converter.build(createExistingAddress());
         assertThat(uri).isNotNull();
-        assertThat(uri.getQuery()).contains(String.format("%s=%s", AddressToUriConverterHere.API_KEY_PARAM_NAME, apiKey));
+        assertThat(uri.getQuery()).contains(String.format("%s=%s", RequestBuilderHere.API_KEY_PARAM_NAME, apiKey));
     }
 
     private AddressDto createExistingAddress() {

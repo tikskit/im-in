@@ -9,7 +9,7 @@ import ru.tikskit.imin.model.Tag;
 import java.util.Collection;
 import java.util.List;
 
-public interface EventRepository extends JpaRepository<Event, Long> {
+public interface EventRepository extends JpaRepository<Event, Long>, EventAdvancedSearch {
     @Query("select e from Event e " +
             "where e.status=:#{T(ru.tikskit.imin.model.EventStatus).ARRANGED} " +
             "and e.eventPlace.placeType in (:#{T(ru.tikskit.imin.model.EventPlaceType).ADDRESS}, :#{T(ru.tikskit.imin.model.EventPlaceType).GEO}) " +

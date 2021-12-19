@@ -6,12 +6,12 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("Билдер адреса для запроса должен")
-class QueryBuilderImplTest {
+class AddressComposerImplTest {
 
     @Test
     @DisplayName("не выбрасывать исключений, если в метод addPart передается null ")
     public void shouldNotThrowWhenAddressPartIsNull() {
-        new QueryBuilderImpl()
+        new AddressComposerImpl()
                 .addPart("not null")
                 .addPart(null)
                 .build();
@@ -20,7 +20,7 @@ class QueryBuilderImplTest {
     @Test
     @DisplayName("должен позволять добавлять одинаковые части несколько раз и они должны присутствовать в результате в этом количестве раз")
     public void shouldAllowDuplicates() {
-        String result = new QueryBuilderImpl()
+        String result = new AddressComposerImpl()
                 .addPart("diff one")
                 .addPart("same one")
                 .addPart("same one")
@@ -31,7 +31,7 @@ class QueryBuilderImplTest {
     @Test
     @DisplayName("должен позволять добавлять одинаковые части несколько раз и они должны присутствовать в результате в этом количестве раз")
     public void shouldAddOnePartPerEveryAddPartCall() {
-        String result = new QueryBuilderImpl()
+        String result = new AddressComposerImpl()
                 .addPart("one")
                 .addPart("two")
                 .addPart("three")

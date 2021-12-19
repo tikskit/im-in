@@ -104,6 +104,11 @@
 			<artifactId>geolatte-geom</artifactId>
 			<version>1.8.2</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-jpamodelgen</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>

@@ -23,7 +23,7 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import ru.tikskit.imin.services.dto.AddressDto;
-import ru.tikskit.imin.services.geocode.AddressToUriConverter;
+import ru.tikskit.imin.services.geocode.RequestBuilder;
 import ru.tikskit.imin.services.geocode.Geocoder;
 import ru.tikskit.imin.services.geocode.LatLng;
 import ru.tikskit.imin.services.geocode.RequestResult;
@@ -68,8 +68,8 @@ class GeocoderHereTest {
     PositionConverter positionConverter;
     @MockBean
     RestTemplate restTemplate;
-    @MockBean(name = "addressToUriConverterHere")
-    AddressToUriConverter addressToUriConverter;
+    @MockBean(name = "requestBuilderHere")
+    RequestBuilder requestBuilder;
     @Autowired
     Geocoder geocoder;
     @Autowired
@@ -92,7 +92,7 @@ class GeocoderHereTest {
                 .fromHttpUrl("https://geocode.search.hereapi.com/")
                 .build()
                 .toUri();
-        when(addressToUriConverter.convert(any())).thenReturn(uri);
+        when(requestBuilder.build(any())).thenReturn(uri);
         when(positionConverter.convert(new Position(lat, lng))).thenReturn(new LatLng(lat, lng));
 
         Result res = new Result();
@@ -125,7 +125,7 @@ class GeocoderHereTest {
                 .fromHttpUrl("https://geocode.search.hereapi.com/")
                 .build()
                 .toUri();
-        when(addressToUriConverter.convert(any())).thenReturn(uri);
+        when(requestBuilder.build(any())).thenReturn(uri);
         when(positionConverter.convert(new Position(lat, lng))).thenReturn(new LatLng(lat, lng));
 
         Result res = new Result();
@@ -160,7 +160,7 @@ class GeocoderHereTest {
                 .fromHttpUrl("https://geocode.search.hereapi.com/")
                 .build()
                 .toUri();
-        when(addressToUriConverter.convert(any())).thenReturn(uri);
+        when(requestBuilder.build(any())).thenReturn(uri);
         when(positionConverter.convert(new Position(lat, lng))).thenReturn(new LatLng(lat, lng));
 
         Result res = new Result();
@@ -188,7 +188,7 @@ class GeocoderHereTest {
                 .fromHttpUrl("https://geocode.search.hereapi.com/")
                 .build()
                 .toUri();
-        when(addressToUriConverter.convert(any())).thenReturn(uri);
+        when(requestBuilder.build(any())).thenReturn(uri);
         when(positionConverter.convert(new Position(lat, lng))).thenReturn(new LatLng(lat, lng));
 
         Result res = new Result();
@@ -218,7 +218,7 @@ class GeocoderHereTest {
                 .fromHttpUrl("https://geocode.search.hereapi.com/")
                 .build()
                 .toUri();
-        when(addressToUriConverter.convert(any())).thenReturn(uri);
+        when(requestBuilder.build(any())).thenReturn(uri);
         when(positionConverter.convert(new Position(lat, lng))).thenReturn(new LatLng(lat, lng));
 
         Result res = new Result();
@@ -247,7 +247,7 @@ class GeocoderHereTest {
                 .fromHttpUrl("https://geocode.search.hereapi.com/")
                 .build()
                 .toUri();
-        when(addressToUriConverter.convert(any())).thenReturn(uri);
+        when(requestBuilder.build(any())).thenReturn(uri);
         when(positionConverter.convert(new Position(lat, lng))).thenReturn(new LatLng(lat, lng));
 
         Result res = new Result();

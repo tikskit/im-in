@@ -4,14 +4,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.util.UriComponentsBuilder;
 import ru.tikskit.imin.services.dto.AddressDto;
-import ru.tikskit.imin.services.geocode.AddressToUriConverter;
+import ru.tikskit.imin.services.geocode.RequestBuilder;
 
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
 @Component
-public class AddressToUriConverterHere implements AddressToUriConverter {
+public class RequestBuilderHere implements RequestBuilder {
 
     public static final String LIMIT_PARAM_NAME = "limit";
     public static final String QUERY_PARAM_NAME = "q";
@@ -19,13 +19,13 @@ public class AddressToUriConverterHere implements AddressToUriConverter {
 
     private final String apiKey;
 
-    public AddressToUriConverterHere(@Value("${geocoding.here.apikey}") String apiKey) {
+    public RequestBuilderHere(@Value("${geocoding.here.apikey}") String apiKey) {
         this.apiKey = apiKey;
     }
 
     private String address2Query(AddressDto address) {
         Objects.requireNonNull(address);
-        return new QueryBuilderImpl()
+        return new AddressComposerImpl()
                 .addPart(address.getCountry())
                 .addPart(address.getState())
                 .addPart(address.getCounty())
@@ -36,7 +36,7 @@ public class AddressToUriConverterHere implements AddressToUriConverter {
     }
 
     @Override
-    public URI convert(AddressDto address) {
+    public URI build(AddressDto address) {
         final String addressStr = address2Query(address);
         return UriComponentsBuilder
                 .fromHttpUrl("https://geocode.search.hereapi.com/")

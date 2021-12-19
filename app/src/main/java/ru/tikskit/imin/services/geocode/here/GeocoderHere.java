@@ -11,7 +11,7 @@ import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import ru.tikskit.imin.services.dto.AddressDto;
-import ru.tikskit.imin.services.geocode.AddressToUriConverter;
+import ru.tikskit.imin.services.geocode.RequestBuilder;
 import ru.tikskit.imin.services.geocode.Geocoder;
 import ru.tikskit.imin.services.geocode.RequestResult;
 import ru.tikskit.imin.services.geocode.here.dto.Result;
@@ -28,13 +28,13 @@ public class GeocoderHere implements Geocoder {
 
     private final RestTemplate restTemplate;
     private final PositionConverter positionConverter;
-    private final AddressToUriConverter addressToUriConverter;
+    private final RequestBuilder requestBuilder;
 
     public GeocoderHere(RestTemplate restTemplate, PositionConverter positionConverter,
-                        @Qualifier("addressToUriConverterHere") AddressToUriConverter addressToUriConverter) {
+                        @Qualifier("requestBuilderHere") RequestBuilder requestBuilder) {
         this.restTemplate = restTemplate;
         this.positionConverter = positionConverter;
-        this.addressToUriConverter = addressToUriConverter;
+        this.requestBuilder = requestBuilder;
     }
 
     // todo Подключить нормальный кэш
@@ -43,8 +43,7 @@ public class GeocoderHere implements Geocoder {
     public RequestResult request(AddressDto address) {
 
         try {
-            ResponseEntity<Result> responce = restTemplate.getForEntity(addressToUriConverter.convert(address),
-                    Result.class);
+            ResponseEntity<Result> responce = restTemplate.getForEntity(requestBuilder.build(address), Result.class);
             Result body = responce.getBody();
 
             if (body == null || body.getItems() == null || body.getItems().isEmpty()) {

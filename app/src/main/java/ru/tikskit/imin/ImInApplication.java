@@ -5,10 +5,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ru.tikskit.imin.model.Address;
 import ru.tikskit.imin.model.Event;
+import ru.tikskit.imin.model.EventAddressDto;
 import ru.tikskit.imin.model.EventPlace;
+import ru.tikskit.imin.model.EventPlaceType;
 import ru.tikskit.imin.model.EventStatus;
 import ru.tikskit.imin.model.Organizer;
 import ru.tikskit.imin.model.Tag;
@@ -22,9 +25,11 @@ import ru.tikskit.imin.services.geocode.LanLngToPointConverter;
 import ru.tikskit.imin.services.geocode.LatLng;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @SpringBootApplication
 @EnableCaching
@@ -41,7 +46,7 @@ public class ImInApplication {
     static class Exec {
         private final ConfigurableApplicationContext context;
 
-        Exec(ConfigurableApplicationContext context) {
+        public Exec(ConfigurableApplicationContext context) {
             this.context = context;
         }
 
@@ -65,51 +70,38 @@ public class ImInApplication {
             Address azovskaya6k3 = Address
                     .builder().country("Россия").state("Центральный федеральный округ").county("Москва").city("Москва")
                     .street("Азовская").building("6к3").build();
-/*
-            Tag partyTag = tagRepository.save(new Tag(0, "Party"));
-            Tag shoppingTag = tagRepository.save(new Tag(0, "Shopping"));
-            List<Tag> bolTags = List.of(partyTag, shoppingTag);
+
+            Tag partyTag = null;
+            Tag shoppingTag =null;
+            partyTag = tagRepository.findByTag("Party");
+            if (partyTag == null) {
+                partyTag = tagRepository.save(new Tag(0, "Party"));
+            }
+            shoppingTag = tagRepository.findByTag("Shopping");
+            if (shoppingTag == null) {
+                shoppingTag = tagRepository.save(new Tag(0, "Shopping"));
+            }
 
             Organizer org = organizerRepository.save(new Organizer());
 
             Event bolParty = new Event(0, org, "Party in bolotnik-ya", OffsetDateTime.now(),
-                    EventStatus.ARRANGED, new EventPlace(bolotnikovskaya30), bolTags);
+                    EventStatus.ARRANGED, new EventPlace(bolotnikovskaya30), List.of(partyTag, shoppingTag));
             eventService.arrange(bolParty);
 
             Event job = new Event(0, org, "job place", OffsetDateTime.now(), EventStatus.ARRANGED,
-                    new EventPlace(azovskaya6k3), List.of(partyTag));
+                    new EventPlace(azovskaya6k3), List.of(partyTag, shoppingTag));
             eventService.arrange(job);
-*/
-            Optional<LatLng> bolLatLng = addressResolver.resolve(addressConverter.toDto(bolotnikovskaya30));
 
-            Tag partyTag = tagRepository.getById(22L);
-            Tag shoppingTag = tagRepository.getById(23L);
-
-            List<Event> byDistance = eventRepository.findByDistance(
-                    lanLngToPointConverter.convert2Point(bolLatLng.get()),
-                    600d, List.of(partyTag));
-
-/*
-        List<Event> byAddress = eventRepository.findByAddress(
-                Address.builder().country("Россия").state("Московская область").city("Москва").build(), null);
-*/
-
-            byDistance.forEach(e -> System.out.println(e.getDescription()));
-
-
-/*
-        AddressResolverService resolver = context.getBean(AddressResolverService.class);
-        AddressDto addressDto = new AddressDto("Россия", "Новосибирская область", "Новосибирск",
-                "Лазурная", "10");
-        Optional<LatLng> latLng = resolver.resolve(addressDto);
-        System.out.println(latLng.orElse(null));
-        latLng = resolver.resolve(addressDto);
-        System.out.println(latLng.orElse(null));
-
-        latLng = resolver.resolve(new AddressDto("xxx", "sdsd", "dfdf",
-                "dfdf", "rrt"));
-        System.out.println(latLng.orElse(null));
-*/
+            List<Event> byAddress = eventRepository.findByAddress(
+                    Address
+                            .builder()
+                            .country("Россия")
+                            .state("Центральный федеральный округ")
+                            .city("Москва")
+                            .street("Азовская")
+                            .build()
+            );
+            byAddress.forEach(System.out::println);
 
         }
     }

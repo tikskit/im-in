@@ -3,13 +3,13 @@ package ru.tikskit.imin.services.geocode.here;
 import java.util.ArrayList;
 import java.util.List;
 
-class QueryBuilderImpl implements QueryBuilder {
+class AddressComposerImpl implements AddressComposer {
     private final static String DELIMITER = "+";
 
     private final List<String> parts = new ArrayList<>();
 
     @Override
-    public QueryBuilder addPart(String part) {
+    public AddressComposer addPart(String part) {
         if (part != null && !part.isBlank()) {
             parts.add(part);
         }

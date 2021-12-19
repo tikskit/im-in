@@ -2,6 +2,7 @@ package ru.tikskit.imin.services.event;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.tikskit.imin.model.Event;
 import ru.tikskit.imin.model.EventPlaceType;
 import ru.tikskit.imin.repositories.event.EventRepository;
@@ -11,6 +12,8 @@ import ru.tikskit.imin.services.geocode.AddressResolverService;
 import ru.tikskit.imin.services.geocode.LanLngToPointConverter;
 import ru.tikskit.imin.services.geocode.LatLng;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.Optional;
 
 @Service
@@ -21,6 +24,8 @@ public class EventServiceImpl implements EventService {
     private final AddressConverter addressConverter;
     private final LanLngToPointConverter lanLngToPointConverter;
     private final EventRepository repository;
+    @PersistenceContext
+    private EntityManager em;
 
     @Override
     public void arrange(Event event) {
@@ -29,6 +34,7 @@ public class EventServiceImpl implements EventService {
             Optional<LatLng> latLng = addressResolverService.resolve(addressDto);
             latLng.ifPresent(lng -> event.getEventPlace().setGeo(lanLngToPointConverter.convert2Point(lng)));
         }
+
         repository.save(event);
     }
 
