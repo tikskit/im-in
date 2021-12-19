@@ -17,7 +17,7 @@ found the user can claim that they will take part in some of them, which lets th
 people are going to come and how many empty slots left.
 
 
-Dependencies used:
+Dependencies:
 - Java 13
 - Docker
 - Maven
@@ -25,6 +25,7 @@ Dependencies used:
 - Spring security
 - Spring Data JPA
 - Rest Templates
+- Spring Batch
 - Spring Actuator
 - JUnit 5
 - PostGIS
