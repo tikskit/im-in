@@ -4,8 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.stereotype.Component;
 
-import java.sql.Connection;
-
 @Component
 @RequiredArgsConstructor
 public class TablesAlterServiceImpl implements TablesAlterService {

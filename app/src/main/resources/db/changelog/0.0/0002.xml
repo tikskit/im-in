@@ -8,25 +8,32 @@
   http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
 
     <changeSet id="0001" author="tikskit">
+        <sql dbms="postgresql, mssql, h2" endDelimiter=";">
+            CREATE SCHEMA places
+        </sql>
+    </changeSet>
+
+
+    <changeSet id="0002" author="tikskit">
         <createTable tableName="countries" schemaName="places">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" primaryKeyName="pk_countries"/>
             </column>
             <column name="name" type="VARCHAR(255)">
-                <constraints unique="true" uniqueConstraintName="c_name_unique"
-                             nullable="false" notNullConstraintName="c_name_not_null"/>
+                <constraints unique="true" uniqueConstraintName="c_country_name_unique"
+                             nullable="false" notNullConstraintName="c_country_name_not_null"/>
             </column>
         </createTable>
     </changeSet>
 
-    <changeSet id="0002" author="tikskit">
+    <changeSet id="0003" author="tikskit">
         <createTable tableName="states" schemaName="places">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" primaryKeyName="pk_states"/>
             </column>
             <column name="name" type="VARCHAR(255)">
-                <constraints unique="true" uniqueConstraintName="c_name_unique"
-                             nullable="false" notNullConstraintName="c_name_not_null"/>
+                <constraints unique="true" uniqueConstraintName="c_state_name_unique"
+                             nullable="false" notNullConstraintName="c_state_name_not_null"/>
             </column>
             <column name="country_id" type="BIGINT">
                 <constraints nullable="false" notNullConstraintName="c_country_id_not_null"/>
@@ -34,13 +41,13 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="0003" author="tikskit">
-        <createIndex tableName="states" indexName="ix_country_id">
+    <changeSet id="0004" author="tikskit">
+        <createIndex tableName="states" indexName="ix_country_id" schemaName="places">
             <column name="country_id"/>
         </createIndex>
     </changeSet>
 
-    <changeSet id="0004" author="tikskit">
+    <changeSet id="0005" author="tikskit">
         <addForeignKeyConstraint baseTableName="states"
                                  baseColumnNames="country_id" constraintName="fk_states_countries"
                                  baseTableSchemaName="places"
@@ -49,14 +56,14 @@
                                  onUpdate="CASCADE" onDelete="CASCADE"/>
     </changeSet>
 
-    <changeSet id="0005" author="tikskit">
+    <changeSet id="0006" author="tikskit">
         <createTable tableName="counties" schemaName="places">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" primaryKeyName="pk_counties"/>
             </column>
             <column name="name" type="VARCHAR(255)">
-                <constraints unique="true" uniqueConstraintName="c_name_unique"
-                             nullable="false" notNullConstraintName="c_name_not_null"/>
+                <constraints unique="true" uniqueConstraintName="c_county_name_unique"
+                             nullable="false" notNullConstraintName="c_county_name_not_null"/>
             </column>
             <column name="state_id" type="BIGINT">
                 <constraints nullable="false" notNullConstraintName="c_state_id_not_null"/>
@@ -64,13 +71,13 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="0006" author="tikskit">
-        <createIndex tableName="counties" indexName="ix_state_id">
+    <changeSet id="0007" author="tikskit">
+        <createIndex tableName="counties" indexName="ix_state_id" schemaName="places">
             <column name="state_id"/>
         </createIndex>
     </changeSet>
 
-    <changeSet id="0007" author="tikskit">
+    <changeSet id="0008" author="tikskit">
         <addForeignKeyConstraint baseTableName="counties"
                                  baseColumnNames="state_id" constraintName="fk_counties_states"
                                  baseTableSchemaName="places"
@@ -79,14 +86,14 @@
                                  onUpdate="CASCADE" onDelete="CASCADE"/>
     </changeSet>
 
-    <changeSet id="0008" author="tikskit">
+    <changeSet id="0009" author="tikskit">
         <createTable tableName="cities" schemaName="places">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" primaryKeyName="pk_cities"/>
             </column>
             <column name="name" type="VARCHAR(255)">
-                <constraints unique="true" uniqueConstraintName="c_name_unique"
-                             nullable="false" notNullConstraintName="c_name_not_null"/>
+                <constraints unique="true" uniqueConstraintName="c_city_name_unique"
+                             nullable="false" notNullConstraintName="c_city_name_not_null"/>
             </column>
             <column name="county_id" type="BIGINT">
                 <constraints nullable="false" notNullConstraintName="c_county_id_not_null"/>
@@ -94,13 +101,13 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="0009" author="tikskit">
-        <createIndex tableName="cities" indexName="ix_county_id">
+    <changeSet id="0010" author="tikskit">
+        <createIndex tableName="cities" indexName="ix_county_id" schemaName="places">
             <column name="county_id"/>
         </createIndex>
     </changeSet>
 
-    <changeSet id="0010" author="tikskit">
+    <changeSet id="0011" author="tikskit">
         <addForeignKeyConstraint baseTableName="cities"
                                  baseColumnNames="county_id" constraintName="fk_cities_counties"
                                  baseTableSchemaName="places"
@@ -109,14 +116,14 @@
                                  onUpdate="CASCADE" onDelete="CASCADE"/>
     </changeSet>
 
-    <changeSet id="0011" author="tikskit">
+    <changeSet id="0012" author="tikskit">
         <createTable tableName="streets" schemaName="places">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" primaryKeyName="pk_streets"/>
             </column>
             <column name="name" type="VARCHAR(255)">
-                <constraints unique="true" uniqueConstraintName="c_name_unique"
-                             nullable="false" notNullConstraintName="c_name_not_null"/>
+                <constraints unique="true" uniqueConstraintName="c_street_name_unique"
+                             nullable="false" notNullConstraintName="c_street_name_not_null"/>
             </column>
             <column name="city_id" type="BIGINT">
                 <constraints nullable="false" notNullConstraintName="c_city_id_not_null"/>
@@ -124,13 +131,13 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="0012" author="tikskit">
-        <createIndex tableName="streets" indexName="ix_city_id">
+    <changeSet id="0013" author="tikskit">
+        <createIndex tableName="streets" indexName="ix_city_id" schemaName="places">
             <column name="city_id"/>
         </createIndex>
     </changeSet>
 
-    <changeSet id="0013" author="tikskit">
+    <changeSet id="0014" author="tikskit">
         <addForeignKeyConstraint baseTableName="streets"
                                  baseColumnNames="city_id" constraintName="fk_streets_cities"
                                  baseTableSchemaName="places"

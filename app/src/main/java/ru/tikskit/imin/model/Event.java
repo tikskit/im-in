@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -32,14 +33,15 @@ import java.util.List;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NamedEntityGraph(name = "events-eager-entity-graph",
         attributeNodes = {@NamedAttributeNode("tags"), @NamedAttributeNode("organizer")})
+@ToString(onlyExplicitlyIncluded = true)
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @ToString.Include
     private long id;
 
     @ManyToOne(targetEntity = Organizer.class)
-    @EqualsAndHashCode.Include
     private Organizer organizer;
 
     @Column(name = "description", nullable = false)
@@ -48,14 +50,17 @@ public class Event {
 
     @Column(name = "datetime", nullable = false)
     @EqualsAndHashCode.Include
+    @ToString.Include
     private OffsetDateTime dateTime;
 
     @Column(name = "status", nullable = false)
     @EqualsAndHashCode.Include
+    @ToString.Include
     private EventStatus status;
 
     @Embedded
     @EqualsAndHashCode.Include
+    @ToString.Include
     private EventPlace eventPlace;
 
     @OneToMany(targetEntity = Tag.class, fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})

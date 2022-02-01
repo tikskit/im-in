@@ -1,21 +1,22 @@
 package ru.tikskit.imin.kladrimport.config;
 
-import org.jamel.kladr.KladrTable;
+import lombok.RequiredArgsConstructor;
+import org.jamel.dbf.DbfReader;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepScope;
+import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.batch.core.step.tasklet.MethodInvokingTaskletAdapter;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.database.JpaItemWriter;
 import org.springframework.batch.item.database.builder.JpaItemWriterBuilder;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import ru.tikskit.imin.kladrimport.service.RootCountryService;
 import ru.tikskit.imin.kladrimport.service.StatesReader;
 import ru.tikskit.imin.kladrimport.service.TablesAlterService;
@@ -24,21 +25,16 @@ import javax.persistence.EntityManagerFactory;
 import java.io.File;
 
 @EnableBatchProcessing
-@Configuration
+@RequiredArgsConstructor
 public class BatchConfig {
-    public static final String JOB_NAME = "Convert and transfer data from KLADR database to Im in tables";
+    public static final String JOB_NAME = "ImportFromKLADR";
 
-    @Autowired
-    private JobBuilderFactory jobBuilderFactory;
-    @Autowired
-    private StepBuilderFactory stepBuilderFactory;
-    @Autowired
-    private EntityManagerFactory entityManagerFactory;
-    @Autowired
-    private RootCountryService rootCountryService;
-    @Autowired
-    private TablesAlterService tablesAlterService;
-
+    private final JobLauncher jobLauncher;
+    private final JobBuilderFactory jobBuilderFactory;
+    private final StepBuilderFactory stepBuilderFactory;
+    private final EntityManagerFactory entityManagerFactory;
+    private final RootCountryService rootCountryService;
+    private final TablesAlterService tablesAlterService;
 
     @Bean
     public Job transferDataJob(Step createCountryRussiaStep, Step transferStatesStep,
@@ -125,8 +121,9 @@ public class BatchConfig {
     }
 
     @Bean
-    public ItemReader<ru.tikskit.imin.kladrimport.model.src.State> stateReader() {
-        return new StatesReader(new File("./" + KladrTable.KLADR.getFileName()));
+    public ItemReader<ru.tikskit.imin.kladrimport.model.src.State> stateReader(
+            @Value("#{jobParameters[file.name]}") String filename) {
+        return new StatesReader(new DbfReader(new File(filename)));
     }
 
     @Bean
@@ -142,4 +139,16 @@ public class BatchConfig {
                 .usePersist(true)
                 .build();
     }
+/*
+
+    @Bean
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(
+            EntityManagerFactoryBuilder builder, DataSource pgDataSource) {
+        return builder
+                .dataSource(pgDataSource)
+                .packages("ru.tikskit.imin.kladrimport.model.tar")
+                .build();
+    }
+*/
+
 }

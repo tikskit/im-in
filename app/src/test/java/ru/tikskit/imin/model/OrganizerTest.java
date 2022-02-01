@@ -19,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 
-@DataJpaTest()
+@DataJpaTest
 @Import(LanLngToPointConverterImpl.class)
 @ComponentScan(basePackages = {"ru.tikskit.imin.config"})
 public class OrganizerTest {

@@ -1,5 +1,9 @@
 # The I'm In project
 
+A system used to organize and search events and attraction participants.
+
+RU: Im-in система для организации и поиска мероприятий и привлечения участников. 
+
 Briefly this web application is similar to meetup.com but much better. Some users state that they are going to host events. 
 The event has a number of attributes that help interested people to find it: 
 - Description or name

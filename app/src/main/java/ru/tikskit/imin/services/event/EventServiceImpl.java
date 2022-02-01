@@ -2,7 +2,6 @@ package ru.tikskit.imin.services.event;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import ru.tikskit.imin.model.Event;
 import ru.tikskit.imin.model.EventPlaceType;
 import ru.tikskit.imin.repositories.event.EventRepository;

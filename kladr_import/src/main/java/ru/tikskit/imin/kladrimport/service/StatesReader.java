@@ -5,7 +5,7 @@ import org.springframework.batch.item.support.AbstractItemCountingItemStreamItem
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.tikskit.imin.kladrimport.model.src.State;
 
-import java.io.File;
+import java.util.Objects;
 
 /**
  * DbfReader не thread-safe -> и этот класс не thread-safe
@@ -14,20 +14,15 @@ public class StatesReader extends AbstractItemCountingItemStreamItemReader<State
 
     @Autowired
     private RowToStateService rowToStateService;
+    private final DbfReader dbfReader;
 
-    private final File file;
-    private DbfReader dbfReader;
-
-    public StatesReader(File file) {
-        this.file = file;
+    public StatesReader(DbfReader dbfReader) {
+        Objects.requireNonNull(dbfReader);
+        this.dbfReader = dbfReader;
     }
 
     @Override
     protected State doRead() throws Exception {
-        if (dbfReader != null) {
-            throw new Exception("DBF reader is instantiated already");
-        }
-
         State state = null;
         Object[] row;
         while (state == null) {
@@ -42,17 +37,11 @@ public class StatesReader extends AbstractItemCountingItemStreamItemReader<State
 
     @Override
     protected void doOpen() throws Exception {
-        if (dbfReader != null) {
-            throw new Exception("DBF reader is instantiated already");
-        }
-        dbfReader = new DbfReader(file);
+
     }
 
     @Override
     protected void doClose() throws Exception {
-        if (dbfReader == null) {
-            throw new Exception("DBF reader is not instantiated");
-        }
         dbfReader.close();
     }
 }
