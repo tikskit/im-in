@@ -9,7 +9,7 @@ The event has a number of attributes that help interested people to find it:
 - Description or name
 - Set of tags that define the nature of the event, what is actually going to happen there. For instance `yoga workout`, 
 `group bike ride`, `pipe smokers meet up`, `BDSM party`, `online language lesson` etc.
-- Slots amount
+- Free slots amount
 - Date and time
 - Place (address/geo point/web address)
 - Price
